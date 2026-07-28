@@ -1,402 +1,788 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="hitebook.ico">
     <title>Hit-E-Book - Catalogue</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-            color: #fff;
-            line-height: 1.6;
-        }
+```
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        color: #fff;
+        line-height: 1.6;
+    }
 
-        /* HEADER */
-        header {
-            padding: 40px 20px;
-            border-bottom: 1px solid rgba(217, 119, 6, 0.2);
-            text-align: center;
-        }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
 
+    /* HEADER */
+    header {
+        padding: 30px 20px 40px;
+        border-bottom: 1px solid rgba(217, 119, 6, 0.2);
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 48px;
+        margin-bottom: 12px;
+    }
+
+    .gradient-text {
+        background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    header p {
+        font-size: 18px;
+        color: #cbd5e1;
+    }
+
+    /* LANGUAGE SELECTOR */
+    .language-selector {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 25px;
+        flex-wrap: wrap;
+    }
+
+    .language-btn {
+        background: rgba(51, 65, 85, 0.4);
+        border: 1px solid rgba(217, 119, 6, 0.3);
+        color: #cbd5e1;
+        padding: 8px 14px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.3s ease;
+    }
+
+    .language-btn:hover,
+    .language-btn.active {
+        background: rgba(217, 119, 6, 0.3);
+        border-color: rgba(217, 119, 6, 0.8);
+        color: #fbbf24;
+    }
+
+    /* HERO */
+    .hero {
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .hero h2 {
+        font-size: 42px;
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 18px;
+        color: #cbd5e1;
+        margin-bottom: 40px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* FILTERS */
+    .filters {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+    }
+
+    .filter-btn {
+        background: rgba(51, 65, 85, 0.3);
+        border: 1px solid rgba(217, 119, 6, 0.3);
+        color: #cbd5e1;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+        background: rgba(217, 119, 6, 0.3);
+        border-color: rgba(217, 119, 6, 0.8);
+        color: #fbbf24;
+    }
+
+    /* PRODUCTS GRID */
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 32px;
+        margin-bottom: 80px;
+    }
+
+    .product-card {
+        background: rgba(51, 65, 85, 0.2);
+        border: 1px solid rgba(217, 119, 6, 0.2);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .product-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(217, 119, 6, 0.8);
+        box-shadow: 0 20px 40px rgba(217, 119, 6, 0.2);
+    }
+
+    .product-image {
+        width: 100%;
+        height: 400px;
+        background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .product-content {
+        padding: 32px;
+    }
+
+    .product-category {
+        display: inline-block;
+        background: rgba(217, 119, 6, 0.2);
+        border: 1px solid rgba(217, 119, 6, 0.5);
+        padding: 6px 12px;
+        border-radius: 16px;
+        font-size: 12px;
+        color: #fcd34d;
+        margin-bottom: 12px;
+    }
+
+    .product-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: #fbbf24;
+    }
+
+    .product-desc {
+        font-size: 14px;
+        color: #cbd5e1;
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+
+    .product-features {
+        list-style: none;
+        margin-bottom: 24px;
+    }
+
+    .product-features li {
+        font-size: 13px;
+        color: #94a3b8;
+        margin-bottom: 8px;
+        display: flex;
+        gap: 8px;
+    }
+
+    .product-features li:before {
+        content: "✓";
+        color: #fbbf24;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    .product-price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(217, 119, 6, 0.2);
+    }
+
+    .price-tag {
+        font-size: 32px;
+        font-weight: 700;
+        color: #fbbf24;
+    }
+
+    .price-tag .currency {
+        font-size: 18px;
+    }
+
+    .product-cta {
+        display: block;
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        color: #000;
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .product-cta:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
+    }
+
+    /* FOOTER */
+    footer {
+        border-top: 1px solid #334155;
+        padding: 48px 20px;
+        text-align: center;
+        color: #64748b;
+    }
+
+    footer p {
+        margin-bottom: 16px;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 32px;
+        margin-bottom: 32px;
+    }
+
+    .social-links a {
+        color: #fbbf24;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+        color: #fcd34d;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
         header h1 {
-            font-size: 48px;
-            margin-bottom: 12px;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        header p {
-            font-size: 18px;
-            color: #cbd5e1;
-        }
-
-        /* HERO */
-        .hero {
-            padding: 60px 20px;
-            text-align: center;
+            font-size: 32px;
         }
 
         .hero h2 {
-            font-size: 42px;
-            margin-bottom: 20px;
+            font-size: 28px;
         }
 
-        .hero p {
-            font-size: 18px;
-            color: #cbd5e1;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* FILTERS */
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: rgba(51, 65, 85, 0.3);
-            border: 1px solid rgba(217, 119, 6, 0.3);
-            color: #cbd5e1;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn:hover, .filter-btn.active {
-            background: rgba(217, 119, 6, 0.3);
-            border-color: rgba(217, 119, 6, 0.8);
-            color: #fbbf24;
-        }
-
-        /* PRODUCTS GRID */
         .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 32px;
-            margin-bottom: 80px;
-        }
-
-        .product-card {
-            background: rgba(51, 65, 85, 0.2);
-            border: 1px solid rgba(217, 119, 6, 0.2);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(217, 119, 6, 0.8);
-            box-shadow: 0 20px 40px rgba(217, 119, 6, 0.2);
+            grid-template-columns: 1fr;
+            gap: 24px;
         }
 
         .product-image {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
-            display: flex;
-            align-items: center;
+            height: 300px;
+        }
+
+        .filters {
             justify-content: center;
-            overflow: hidden;
         }
+    }
+</style>
+```
 
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .product-content {
-            padding: 32px;
-        }
-
-        .product-category {
-            display: inline-block;
-            background: rgba(217, 119, 6, 0.2);
-            border: 1px solid rgba(217, 119, 6, 0.5);
-            padding: 6px 12px;
-            border-radius: 16px;
-            font-size: 12px;
-            color: #fcd34d;
-            margin-bottom: 12px;
-        }
-
-        .product-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #fbbf24;
-        }
-
-        .product-desc {
-            font-size: 14px;
-            color: #cbd5e1;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .product-features {
-            list-style: none;
-            margin-bottom: 24px;
-        }
-
-        .product-features li {
-            font-size: 13px;
-            color: #94a3b8;
-            margin-bottom: 8px;
-            display: flex;
-            gap: 8px;
-        }
-
-        .product-features li:before {
-            content: "✓";
-            color: #fbbf24;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .product-price {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(217, 119, 6, 0.2);
-        }
-
-        .price-tag {
-            font-size: 32px;
-            font-weight: 700;
-            color: #fbbf24;
-        }
-
-        .price-tag .currency {
-            font-size: 18px;
-        }
-
-        .product-cta {
-            display: block;
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: #000;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .product-cta:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
-        }
-
-        /* FOOTER */
-        footer {
-            border-top: 1px solid #334155;
-            padding: 48px 20px;
-            text-align: center;
-            color: #64748b;
-        }
-
-        footer p {
-            margin-bottom: 16px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            margin-bottom: 32px;
-        }
-
-        .social-links a {
-            color: #fbbf24;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: #fcd34d;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 32px;
-            }
-
-            .hero h2 {
-                font-size: 28px;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-
-            .product-image {
-                height: 300px;
-            }
-
-            .filters {
-                justify-content: center;
-            }
-        }
-    </style>
 </head>
+
 <body>
-    <!-- HEADER -->
-    <header>
-        <div class="container">
-            <h1>Hit<span class="gradient-text">-E-Book</span></h1>
-            <p>Guides pratiques qui te font gagner du temps et de l'argent</p>
-        </div>
-    </header>
 
-    <!-- HERO + FILTERS -->
-    <div class="hero">
-        <div class="container">
-            <h2>Tous nos ebooks</h2>
-            <p>Sélectionne un guide et commence à apprendre dès aujourd'hui</p>
-
-            <div class="filters">
-                <button class="filter-btn active" onclick="filterProducts('all')">Tous</button>
-                <button class="filter-btn" onclick="filterProducts('prompts')">Prompts & IA</button>
-                <button class="filter-btn" onclick="filterProducts('creation')">Création & Business</button>
-                <button class="filter-btn" onclick="filterProducts('copywriting')">Copywriting</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- PRODUCTS GRID -->
+```
+<!-- HEADER -->
+<header>
     <div class="container">
-        <div class="products-grid" id="productsGrid">
-            <!-- Les produits sont générés via JavaScript -->
+
+        <!-- LANGUAGE SELECTOR -->
+        <div class="language-selector">
+            <button class="language-btn active" onclick="changeLanguage('fr')">🇫🇷 Français</button>
+            <button class="language-btn" onclick="changeLanguage('pt')">🇵🇹 Português</button>
+            <button class="language-btn" onclick="changeLanguage('en')">🇬🇧 English</button>
+            <button class="language-btn" onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
+        </div>
+
+        <h1>Hit<span class="gradient-text">-E-Book</span></h1>
+
+        <p id="headerDescription">
+            Guides pratiques qui te font gagner du temps et de l'argent
+        </p>
+    </div>
+</header>
+
+
+<!-- HERO + FILTERS -->
+<div class="hero">
+    <div class="container">
+
+        <h2 id="heroTitle">Tous nos ebooks</h2>
+
+        <p id="heroDescription">
+            Sélectionne un guide et commence à apprendre dès aujourd'hui
+        </p>
+
+        <div class="filters">
+
+            <button class="filter-btn active" onclick="filterProducts('all', this)" id="filterAll">
+                Tous
+            </button>
+
+            <button class="filter-btn" onclick="filterProducts('prompts', this)" id="filterPrompts">
+                Prompts & IA
+            </button>
+
+            <button class="filter-btn" onclick="filterProducts('creation', this)" id="filterCreation">
+                Création & Business
+            </button>
+
+            <button class="filter-btn" onclick="filterProducts('copywriting', this)" id="filterCopywriting">
+                Copywriting
+            </button>
+
         </div>
     </div>
+</div>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <p>Questions ? Contacte-moi sur :</p>
-            <div class="social-links">
-                <a href="https://www.tiktok.com/@hitebook" target="_blank">TikTok</a>
-                <a href="https://www.instagram.com/hit_e_book/" target="_blank">Instagram</a>
-            </div>
-            <p>© 2026. Tous droits réservés.</p>
+
+<!-- PRODUCTS GRID -->
+<div class="container">
+    <div class="products-grid" id="productsGrid"></div>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+
+        <p id="footerQuestion">
+            Questions ? Contacte-moi sur :
+        </p>
+
+        <div class="social-links">
+            <a href="https://www.tiktok.com/@hitebook" target="_blank">TikTok</a>
+            <a href="https://www.instagram.com/hit_e_book/" target="_blank">Instagram</a>
         </div>
-    </footer>
 
-    <script>
-        const products = [
-            {
-                id: 1,
+        <p id="footerCopyright">
+            © 2026. Tous droits réservés.
+        </p>
+
+    </div>
+</footer>
+
+
+<script>
+
+    /* =========================
+       TRADUCTIONS
+    ========================= */
+
+    const translations = {
+
+        fr: {
+            headerDescription: "Guides pratiques qui te font gagner du temps et de l'argent",
+            heroTitle: "Tous nos ebooks",
+            heroDescription: "Sélectionne un guide et commence à apprendre dès aujourd'hui",
+
+            all: "Tous",
+            prompts: "Prompts & IA",
+            creation: "Création & Business",
+            copywriting: "Copywriting",
+
+            categoryPrompts: "✨ Prompts",
+            categoryCreation: "📚 Création",
+            categoryCopywriting: "✍️ Copywriting",
+
+            once: "Une fois",
+            buy: "Acheter maintenant",
+
+            footerQuestion: "Questions ? Contacte-moi sur :",
+            footerCopyright: "© 2026. Tous droits réservés."
+        },
+
+        pt: {
+            headerDescription: "Guias práticos que ajudam você a economizar tempo e dinheiro",
+            heroTitle: "Todos os nossos ebooks",
+            heroDescription: "Escolha um guia e comece a aprender hoje mesmo",
+
+            all: "Todos",
+            prompts: "Prompts & IA",
+            creation: "Criação & Negócios",
+            copywriting: "Copywriting",
+
+            categoryPrompts: "✨ Prompts",
+            categoryCreation: "📚 Criação",
+            categoryCopywriting: "✍️ Copywriting",
+
+            once: "Uma vez",
+            buy: "Comprar agora",
+
+            footerQuestion: "Dúvidas? Entre em contato comigo:",
+            footerCopyright: "© 2026. Todos os direitos reservados."
+        },
+
+        en: {
+            headerDescription: "Practical guides that help you save time and make money",
+            heroTitle: "All our ebooks",
+            heroDescription: "Choose a guide and start learning today",
+
+            all: "All",
+            prompts: "Prompts & AI",
+            creation: "Creation & Business",
+            copywriting: "Copywriting",
+
+            categoryPrompts: "✨ Prompts",
+            categoryCreation: "📚 Creation",
+            categoryCopywriting: "✍️ Copywriting",
+
+            once: "One-time",
+            buy: "Buy now",
+
+            footerQuestion: "Questions? Contact me on:",
+            footerCopyright: "© 2026. All rights reserved."
+        },
+
+        de: {
+            headerDescription: "Praktische Leitfäden, die dir helfen, Zeit und Geld zu sparen",
+            heroTitle: "Alle unsere E-Books",
+            heroDescription: "Wähle einen Leitfaden und beginne noch heute zu lernen",
+
+            all: "Alle",
+            prompts: "Prompts & KI",
+            creation: "Erstellung & Business",
+            copywriting: "Copywriting",
+
+            categoryPrompts: "✨ Prompts",
+            categoryCreation: "📚 Erstellung",
+            categoryCopywriting: "✍️ Copywriting",
+
+            once: "Einmalig",
+            buy: "Jetzt kaufen",
+
+            footerQuestion: "Fragen? Kontaktiere mich auf:",
+            footerCopyright: "© 2026. Alle Rechte vorbehalten."
+        }
+
+    };
+
+
+    /* =========================
+       PRODUITS
+    ========================= */
+
+    const products = [
+
+        {
+            id: 1,
+            category: "prompts",
+            image: "cover-ebook1.png",
+            price: 14.99,
+            link: "https://buy.stripe.com/14AbJ0aCegHa2DS90X87K03",
+
+            fr: {
                 title: "50 Prompts IA",
-                category: "prompts",
-                image: "cover-ebook1.png",
                 description: "50 prompts ChatGPT & Claude qui rapportent de l'argent. Prêts à copier-coller.",
-                features: ["50 prompts structurés", "ChatGPT & Claude", "PDF + DOCX", "Accès à vie"],
-                price: 14.99,
-                link: "https://buy.stripe.com/14AbJ0aCegHa2DS90X87K03"
+                features: ["50 prompts structurés", "ChatGPT & Claude", "PDF + DOCX", "Accès à vie"]
             },
-            {
-                id: 2,
-                title: "Copywriting qui vend",
-                category: "copywriting",
-                image: "cover-ebook3.png",
-                description: "50+ formules et scripts de copywriting prêts à utiliser immédiatement.",
-                features: ["5 formules éprouvées", "25 scripts TikTok/Insta", "15 scripts email", "10 templates landing"],
-                price: 24.99,
-                link: "https://buy.stripe.com/6oU9AS7q2fD6fqE3GD87K01"
+
+            pt: {
+                title: "50 Prompts de IA",
+                description: "50 prompts para ChatGPT e Claude que podem ajudar você a ganhar dinheiro. Prontos para copiar e colar.",
+                features: ["50 prompts estruturados", "ChatGPT e Claude", "PDF + DOCX", "Acesso vitalício"]
             },
-            {
-                id: 3,
-                title: "Créer un ebook en 7 jours",
-                category: "creation",
-                image: "cover-ebook2.png",
-                description: "Le guide complet pour créer et vendre un ebook en une semaine.",
-                features: ["Plan jour par jour", "Sans bullshit", "Prêt à lancer", "Checklist incluse"],
-                price: 34.99,
-                link: "https://buy.stripe.com/4gMaEW6lY62wa6k1yv87K02"
+
+            en: {
+                title: "50 AI Prompts",
+                description: "50 ChatGPT & Claude prompts designed to help you make money. Ready to copy and paste.",
+                features: ["50 structured prompts", "ChatGPT & Claude", "PDF + DOCX", "Lifetime access"]
+            },
+
+            de: {
+                title: "50 KI-Prompts",
+                description: "50 ChatGPT- und Claude-Prompts, die dir helfen können, Geld zu verdienen. Sofort zum Kopieren und Einfügen bereit.",
+                features: ["50 strukturierte Prompts", "ChatGPT & Claude", "PDF + DOCX", "Lebenslanger Zugang"]
             }
-        ];
+        },
 
-        function renderProducts(filter = 'all') {
-            const grid = document.getElementById('productsGrid');
-            grid.innerHTML = '';
 
-            const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+        {
+            id: 2,
+            category: "copywriting",
+            image: "cover-ebook3.png",
+            price: 24.99,
+            link: "https://buy.stripe.com/6oU9AS7q2fD6fqE3GD87K01",
 
-            filtered.forEach(product => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
-                    <div class="product-image">
-                        <img src="${product.image}" alt="${product.title}">
-                    </div>
-                    <div class="product-content">
-                        <span class="product-category">${product.category === 'prompts' ? '✨ Prompts' : product.category === 'creation' ? '📚 Création' : '✍️ Copywriting'}</span>
-                        <h3 class="product-title">${product.title}</h3>
-                        <p class="product-desc">${product.description}</p>
-                        <ul class="product-features">
-                            ${product.features.map(f => `<li>${f}</li>`).join('')}
-                        </ul>
-                        <div class="product-price">
-                            <span class="price-tag"><span class="currency">€</span>${product.price}</span>
-                            <small style="color: #94a3b8;">Une fois</small>
-                        </div>
-                        <a href="${product.link}" class="product-cta">Acheter maintenant</a>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
+            fr: {
+                title: "Copywriting qui vend",
+                description: "50+ formules et scripts de copywriting prêts à utiliser immédiatement.",
+                features: ["5 formules éprouvées", "25 scripts TikTok/Insta", "15 scripts email", "10 templates landing"]
+            },
+
+            pt: {
+                title: "Copywriting que vende",
+                description: "Mais de 50 fórmulas e scripts de copywriting prontos para usar imediatamente.",
+                features: ["5 fórmulas comprovadas", "25 scripts para TikTok/Insta", "15 scripts de email", "10 templates de landing pages"]
+            },
+
+            en: {
+                title: "Copywriting That Sells",
+                description: "50+ copywriting formulas and scripts ready to use immediately.",
+                features: ["5 proven formulas", "25 TikTok/Insta scripts", "15 email scripts", "10 landing page templates"]
+            },
+
+            de: {
+                title: "Copywriting, das verkauft",
+                description: "Über 50 Copywriting-Formeln und Skripte, die sofort einsatzbereit sind.",
+                features: ["5 bewährte Formeln", "25 TikTok-/Insta-Skripte", "15 E-Mail-Skripte", "10 Landingpage-Vorlagen"]
+            }
+        },
+
+
+        {
+            id: 3,
+            category: "creation",
+            image: "cover-ebook2.png",
+            price: 34.99,
+            link: "https://buy.stripe.com/4gMaEW6lY62wa6k1yv87K02",
+
+            fr: {
+                title: "Créer un ebook en 7 jours",
+                description: "Le guide complet pour créer et vendre un ebook en une semaine.",
+                features: ["Plan jour par jour", "Sans bullshit", "Prêt à lancer", "Checklist incluse"]
+            },
+
+            pt: {
+                title: "Crie um ebook em 7 dias",
+                description: "O guia completo para criar e vender um ebook em apenas uma semana.",
+                features: ["Plano dia a dia", "Sem enrolação", "Pronto para lançar", "Checklist incluído"]
+            },
+
+            en: {
+                title: "Create an Ebook in 7 Days",
+                description: "The complete guide to creating and selling an ebook in one week.",
+                features: ["Day-by-day plan", "No bullshit", "Ready to launch", "Checklist included"]
+            },
+
+            de: {
+                title: "Erstelle ein E-Book in 7 Tagen",
+                description: "Der komplette Leitfaden, um innerhalb einer Woche ein E-Book zu erstellen und zu verkaufen.",
+                features: ["Tagesplan", "Ohne Bullshit", "Startbereit", "Checkliste inklusive"]
+            }
         }
 
-        function filterProducts(category) {
-            // Mettre à jour les boutons actifs
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
+    ];
 
-            // Afficher les produits filtrés
-            renderProducts(category);
-        }
 
-        // Afficher tous les produits au chargement
-        renderProducts();
-    </script>
+    /* =========================
+       VARIABLES
+    ========================= */
+
+    let currentLanguage = "fr";
+    let currentFilter = "all";
+
+
+    /* =========================
+       AFFICHER LES PRODUITS
+    ========================= */
+
+    function renderProducts(filter = "all") {
+
+        const grid = document.getElementById("productsGrid");
+
+        grid.innerHTML = "";
+
+        const filtered = filter === "all"
+            ? products
+            : products.filter(product => product.category === filter);
+
+
+        filtered.forEach(product => {
+
+            const data = product[currentLanguage];
+            const t = translations[currentLanguage];
+
+            let categoryName;
+
+            if (product.category === "prompts") {
+                categoryName = t.categoryPrompts;
+            } else if (product.category === "creation") {
+                categoryName = t.categoryCreation;
+            } else {
+                categoryName = t.categoryCopywriting;
+            }
+
+
+            const card = document.createElement("div");
+
+            card.className = "product-card";
+
+            card.innerHTML = `
+
+                <div class="product-image">
+                    <img 
+                        src="${product.image}" 
+                        alt="${data.title}"
+                        loading="lazy"
+                    >
+                </div>
+
+                <div class="product-content">
+
+                    <span class="product-category">
+                        ${categoryName}
+                    </span>
+
+                    <h3 class="product-title">
+                        ${data.title}
+                    </h3>
+
+                    <p class="product-desc">
+                        ${data.description}
+                    </p>
+
+                    <ul class="product-features">
+
+                        ${data.features
+                            .map(feature => `<li>${feature}</li>`)
+                            .join("")}
+
+                    </ul>
+
+                    <div class="product-price">
+
+                        <span class="price-tag">
+                            <span class="currency">€</span>${product.price}
+                        </span>
+
+                        <small style="color: #94a3b8;">
+                            ${t.once}
+                        </small>
+
+                    </div>
+
+                    <a 
+                        href="${product.link}" 
+                        class="product-cta"
+                    >
+                        ${t.buy}
+                    </a>
+
+                </div>
+            `;
+
+            grid.appendChild(card);
+
+        });
+
+    }
+
+
+    /* =========================
+       CHANGER DE LANGUE
+    ========================= */
+
+    function changeLanguage(language) {
+
+        currentLanguage = language;
+
+        const t = translations[language];
+
+        // Mise à jour de la langue HTML
+        document.documentElement.lang = language;
+
+        // Mise à jour des textes
+        document.getElementById("headerDescription").textContent =
+            t.headerDescription;
+
+        document.getElementById("heroTitle").textContent =
+            t.heroTitle;
+
+        document.getElementById("heroDescription").textContent =
+            t.heroDescription;
+
+        document.getElementById("filterAll").textContent =
+            t.all;
+
+        document.getElementById("filterPrompts").textContent =
+            t.prompts;
+
+        document.getElementById("filterCreation").textContent =
+            t.creation;
+
+        document.getElementById("filterCopywriting").textContent =
+            t.copywriting;
+
+        document.getElementById("footerQuestion").textContent =
+            t.footerQuestion;
+
+        document.getElementById("footerCopyright").textContent =
+            t.footerCopyright;
+
+
+        // Mise à jour du bouton de langue actif
+        document.querySelectorAll(".language-btn").forEach(button => {
+            button.classList.remove("active");
+        });
+
+        event.target.classList.add("active");
+
+
+        // Réafficher les produits dans la nouvelle langue
+        renderProducts(currentFilter);
+
+    }
+
+
+    /* =========================
+       FILTRER LES PRODUITS
+    ========================= */
+
+    function filterProducts(category, button) {
+
+        currentFilter = category;
+
+        document.querySelectorAll(".filter-btn").forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        renderProducts(category);
+
+    }
+
+
+    /* =========================
+       INITIALISATION
+    ========================= */
+
+    renderProducts();
+
+</script>
+```
+
 </body>
 </html>
