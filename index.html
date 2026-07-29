@@ -1,398 +1,507 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="hitebook.ico">
-    <title>Hit-E-Book - Catalogue</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="hitebook.ico">
+<title>Hit-E-Book — Collection</title>
 
-```
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+    :root{
+        --bg: #0a0d16;
+        --bg-panel: #12162389;
+        --panel-solid: #12161f;
+        --gold: #c9a24b;
+        --gold-light: #e6c877;
+        --gold-dim: rgba(201,162,75,0.22);
+        --hairline: rgba(201,162,75,0.16);
+        --cream: #f3ede0;
+        --muted: #8991a6;
+        --muted-dim: #5b6478;
     }
 
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-        color: #fff;
-        line-height: 1.6;
+    *{ margin:0; padding:0; box-sizing:border-box; }
+
+    html{ scroll-behavior:smooth; }
+
+    body{
+        font-family:'Inter', sans-serif;
+        background:
+            radial-gradient(1100px 600px at 50% -10%, rgba(201,162,75,0.10), transparent 60%),
+            var(--bg);
+        color: var(--cream);
+        line-height:1.6;
+        -webkit-font-smoothing: antialiased;
     }
 
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
+    /* faint grain overlay */
+    body::before{
+        content:"";
+        position:fixed; inset:0;
+        pointer-events:none;
+        opacity:0.05;
+        z-index:1;
+        background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
     }
 
-    /* HEADER */
-    header {
-        padding: 30px 20px 40px;
-        border-bottom: 1px solid rgba(217, 119, 6, 0.2);
-        text-align: center;
+    .container{ max-width:1180px; margin:0 auto; padding:0 24px; position:relative; z-index:2; }
+
+    a{ color:inherit; }
+
+    ::selection{ background: var(--gold-dim); color:var(--cream); }
+
+    /* ============ TOP BAR ============ */
+    .topbar{
+        border-bottom:1px solid var(--hairline);
+        padding:18px 0;
+    }
+    .topbar .container{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:16px;
+        flex-wrap:wrap;
+    }
+    .brand-mark{
+        font-family:'Fraunces', serif;
+        font-size:15px;
+        letter-spacing:0.14em;
+        text-transform:uppercase;
+        color: var(--muted);
+    }
+    .brand-mark strong{ color: var(--gold-light); font-weight:600; }
+
+    .language-selector{
+        display:flex;
+        align-items:center;
+        gap:0;
+    }
+    .language-btn{
+        background:none;
+        border:none;
+        color: var(--muted-dim);
+        padding:6px 12px;
+        cursor:pointer;
+        font-family:'JetBrains Mono', monospace;
+        font-size:11px;
+        letter-spacing:0.08em;
+        text-transform:uppercase;
+        border-right:1px solid var(--hairline);
+        transition: color 0.25s ease;
+    }
+    .language-selector .language-btn:last-child{ border-right:none; }
+    .language-btn:hover{ color: var(--gold-light); }
+    .language-btn.active{ color: var(--gold); font-weight:600; }
+
+    /* ============ HEADER / HERO ============ */
+    header{
+        padding:88px 20px 56px;
+        text-align:center;
+        border-bottom:1px solid var(--hairline);
+        position:relative;
+        overflow:hidden;
     }
 
-    header h1 {
-        font-size: 48px;
-        margin-bottom: 12px;
+    .eyebrow{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        font-family:'JetBrains Mono', monospace;
+        font-size:11px;
+        letter-spacing:0.22em;
+        text-transform:uppercase;
+        color: var(--gold);
+        margin-bottom:28px;
+    }
+    .eyebrow::before, .eyebrow::after{
+        content:"";
+        width:28px; height:1px;
+        background: var(--gold-dim);
     }
 
-    .gradient-text {
-        background: linear-gradient(135deg, #fbbf24, #f59e0b);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+    header h1{
+        font-family:'Fraunces', serif;
+        font-weight:450;
+        font-size:clamp(44px, 7vw, 76px);
+        letter-spacing:-0.01em;
+        line-height:1.02;
+        margin-bottom:22px;
     }
 
-    header p {
-        font-size: 18px;
-        color: #cbd5e1;
+    .gradient-text{
+        font-style:italic;
+        font-weight:450;
+        background: linear-gradient(135deg, var(--gold-light), var(--gold) 60%, #a5813a);
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+        background-clip:text;
     }
 
-    /* LANGUAGE SELECTOR */
-    .language-selector {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin-bottom: 25px;
-        flex-wrap: wrap;
+    header p{
+        font-size:17px;
+        color: var(--muted);
+        max-width:480px;
+        margin:0 auto;
+        font-weight:400;
     }
 
-    .language-btn {
-        background: rgba(51, 65, 85, 0.4);
-        border: 1px solid rgba(217, 119, 6, 0.3);
-        color: #cbd5e1;
-        padding: 8px 14px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-size: 13px;
-        transition: all 0.3s ease;
+    /* ============ HERO STRIP ============ */
+    .hero{
+        padding:52px 20px 44px;
+        text-align:center;
     }
 
-    .language-btn:hover,
-    .language-btn.active {
-        background: rgba(217, 119, 6, 0.3);
-        border-color: rgba(217, 119, 6, 0.8);
-        color: #fbbf24;
+    .hero h2{
+        font-family:'Fraunces', serif;
+        font-weight:450;
+        font-style:italic;
+        font-size:clamp(26px, 3.4vw, 34px);
+        color: var(--cream);
+        margin-bottom:14px;
     }
 
-    /* HERO */
-    .hero {
-        padding: 60px 20px;
-        text-align: center;
+    .hero p{
+        font-size:15px;
+        color: var(--muted);
+        margin-bottom:44px;
     }
 
-    .hero h2 {
-        font-size: 42px;
-        margin-bottom: 20px;
+    .filters{
+        display:flex;
+        justify-content:center;
+        gap:36px;
+        flex-wrap:wrap;
+        border-bottom:1px solid var(--hairline);
+        padding-bottom:0;
     }
 
-    .hero p {
-        font-size: 18px;
-        color: #cbd5e1;
-        margin-bottom: 40px;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
+    .filter-btn{
+        background:none;
+        border:none;
+        color: var(--muted-dim);
+        padding:0 0 16px;
+        cursor:pointer;
+        font-family:'Inter', sans-serif;
+        font-size:13px;
+        letter-spacing:0.04em;
+        text-transform:uppercase;
+        font-weight:500;
+        position:relative;
+        transition: color 0.25s ease;
+    }
+    .filter-btn::after{
+        content:"";
+        position:absolute;
+        left:0; right:0; bottom:-1px;
+        height:2px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin:center;
+        transition: transform 0.3s ease;
+    }
+    .filter-btn:hover{ color: var(--cream); }
+    .filter-btn.active{ color: var(--gold-light); }
+    .filter-btn.active::after{ transform: scaleX(1); }
+
+    /* ============ PRODUCTS GRID ============ */
+    .products-grid{
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap:1px;
+        background: var(--hairline);
+        border:1px solid var(--hairline);
+        margin:64px 0 100px;
     }
 
-    /* FILTERS */
-    .filters {
-        display: flex;
-        justify-content: center;
-        gap: 12px;
-        margin-bottom: 40px;
-        flex-wrap: wrap;
+    .product-card{
+        background: var(--panel-solid);
+        position:relative;
+        display:flex;
+        flex-direction:column;
+        transition: background 0.35s ease;
+    }
+    .product-card:hover{ background:#151a26; }
+
+    .product-edition{
+        position:absolute;
+        top:22px; right:24px;
+        font-family:'JetBrains Mono', monospace;
+        font-size:11px;
+        letter-spacing:0.1em;
+        color: var(--muted-dim);
+        z-index:3;
     }
 
-    .filter-btn {
-        background: rgba(51, 65, 85, 0.3);
-        border: 1px solid rgba(217, 119, 6, 0.3);
-        color: #cbd5e1;
-        padding: 10px 20px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-size: 14px;
-        transition: all 0.3s ease;
+    .product-image{
+        width:100%;
+        height:380px;
+        background: linear-gradient(180deg, #1b2130 0%, #0e1119 100%);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        overflow:hidden;
+        position:relative;
+    }
+    .product-image::after{
+        content:"";
+        position:absolute; inset:0;
+        background: linear-gradient(180deg, transparent 55%, rgba(10,13,22,0.55));
+        pointer-events:none;
+    }
+    .product-image img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        filter: saturate(0.94) contrast(1.02);
+        transition: transform 0.6s cubic-bezier(.2,.7,.2,1);
+    }
+    .product-card:hover .product-image img{ transform: scale(1.045); }
+
+    .product-content{
+        padding:34px 32px 32px;
+        flex:1;
+        display:flex;
+        flex-direction:column;
     }
 
-    .filter-btn:hover,
-    .filter-btn.active {
-        background: rgba(217, 119, 6, 0.3);
-        border-color: rgba(217, 119, 6, 0.8);
-        color: #fbbf24;
+    .product-category{
+        font-family:'JetBrains Mono', monospace;
+        font-size:11px;
+        letter-spacing:0.14em;
+        text-transform:uppercase;
+        color: var(--gold);
+        margin-bottom:16px;
     }
 
-    /* PRODUCTS GRID */
-    .products-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 32px;
-        margin-bottom: 80px;
+    .product-title{
+        font-family:'Fraunces', serif;
+        font-weight:500;
+        font-size:26px;
+        line-height:1.2;
+        margin-bottom:14px;
+        color: var(--cream);
     }
 
-    .product-card {
-        background: rgba(51, 65, 85, 0.2);
-        border: 1px solid rgba(217, 119, 6, 0.2);
-        border-radius: 16px;
-        overflow: hidden;
-        transition: all 0.3s ease;
+    .product-desc{
+        font-size:14px;
+        color: var(--muted);
+        margin-bottom:24px;
+        line-height:1.65;
     }
 
-    .product-card:hover {
-        transform: translateY(-8px);
-        border-color: rgba(217, 119, 6, 0.8);
-        box-shadow: 0 20px 40px rgba(217, 119, 6, 0.2);
+    .product-features{
+        list-style:none;
+        margin-bottom:26px;
+        border-top:1px solid var(--hairline);
+        padding-top:18px;
     }
 
-    .product-image {
-        width: 100%;
-        height: 400px;
-        background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
+    .product-features li{
+        font-size:13px;
+        color:#aab2c5;
+        padding:8px 0;
+        display:flex;
+        gap:12px;
+        align-items:baseline;
+        border-bottom:1px solid rgba(201,162,75,0.08);
+    }
+    .product-features li:last-child{ border-bottom:none; }
+
+    .product-features li:before{
+        content:"◆";
+        color: var(--gold);
+        font-size:6px;
+        flex-shrink:0;
+        transform: translateY(-2px);
     }
 
-    .product-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+    .product-price{
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-end;
+        margin-bottom:22px;
+        padding-top:20px;
+        margin-top:auto;
+        border-top:1px solid var(--hairline);
     }
 
-    .product-content {
-        padding: 32px;
+    .price-tag{
+        font-family:'Fraunces', serif;
+        font-size:30px;
+        font-weight:500;
+        color: var(--gold-light);
+        line-height:1;
+    }
+    .price-tag .currency{
+        font-size:16px;
+        font-family:'Inter', sans-serif;
+        vertical-align: super;
+        margin-right:2px;
+        color: var(--gold);
     }
 
-    .product-category {
-        display: inline-block;
-        background: rgba(217, 119, 6, 0.2);
-        border: 1px solid rgba(217, 119, 6, 0.5);
-        padding: 6px 12px;
-        border-radius: 16px;
-        font-size: 12px;
-        color: #fcd34d;
-        margin-bottom: 12px;
+    .price-note{
+        font-family:'JetBrains Mono', monospace;
+        font-size:10px;
+        letter-spacing:0.08em;
+        text-transform:uppercase;
+        color: var(--muted-dim);
     }
 
-    .product-title {
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 12px;
-        color: #fbbf24;
+    .product-cta{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        background:transparent;
+        color: var(--gold-light);
+        border:1px solid var(--gold);
+        padding:14px 24px;
+        text-align:center;
+        font-family:'Inter', sans-serif;
+        font-weight:600;
+        font-size:12px;
+        letter-spacing:0.1em;
+        text-transform:uppercase;
+        text-decoration:none;
+        cursor:pointer;
+        width:100%;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+    .product-cta .arrow{ transition: transform 0.3s ease; }
+    .product-cta:hover{
+        background: var(--gold);
+        color:#0a0d16;
+    }
+    .product-cta:hover .arrow{ transform: translateX(4px); }
+
+    /* ============ FOOTER ============ */
+    footer{
+        border-top:1px solid var(--hairline);
+        padding:56px 20px 48px;
+        text-align:center;
     }
 
-    .product-desc {
-        font-size: 14px;
-        color: #cbd5e1;
-        margin-bottom: 20px;
-        line-height: 1.6;
+    footer p{
+        margin-bottom:18px;
+        color: var(--muted-dim);
+        font-size:13px;
+        letter-spacing:0.03em;
     }
 
-    .product-features {
-        list-style: none;
-        margin-bottom: 24px;
+    #footerQuestion{
+        font-family:'Fraunces', serif;
+        font-style:italic;
+        font-size:17px;
+        color: var(--muted);
     }
 
-    .product-features li {
-        font-size: 13px;
-        color: #94a3b8;
-        margin-bottom: 8px;
-        display: flex;
-        gap: 8px;
+    .social-links{
+        display:flex;
+        justify-content:center;
+        gap:36px;
+        margin-bottom:32px;
     }
 
-    .product-features li:before {
-        content: "✓";
-        color: #fbbf24;
-        font-weight: 700;
-        flex-shrink: 0;
+    .social-links a{
+        color: var(--gold-light);
+        text-decoration:none;
+        font-family:'JetBrains Mono', monospace;
+        font-size:11px;
+        letter-spacing:0.1em;
+        text-transform:uppercase;
+        padding-bottom:4px;
+        border-bottom:1px solid transparent;
+        transition: border-color 0.3s ease, color 0.3s ease;
+    }
+    .social-links a:hover{
+        color: var(--gold);
+        border-color: var(--gold-dim);
     }
 
-    .product-price {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        padding-top: 20px;
-        border-top: 1px solid rgba(217, 119, 6, 0.2);
+    #footerCopyright{
+        font-family:'JetBrains Mono', monospace;
+        font-size:10px;
+        letter-spacing:0.06em;
+        color:#454c5e;
     }
 
-    .price-tag {
-        font-size: 32px;
-        font-weight: 700;
-        color: #fbbf24;
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 768px){
+        header{ padding:64px 20px 44px; }
+        header h1{ font-size:40px; }
+        .hero h2{ font-size:24px; }
+        .filters{ gap:20px; }
+        .products-grid{ grid-template-columns:1fr; margin:44px 0 72px; }
+        .product-image{ height:320px; }
+        .product-content{ padding:28px 24px 26px; }
+        .topbar .container{ justify-content:center; text-align:center; }
     }
 
-    .price-tag .currency {
-        font-size: 18px;
-    }
-
-    .product-cta {
-        display: block;
-        background: linear-gradient(135deg, #f59e0b, #d97706);
-        color: #000;
-        padding: 12px 24px;
-        border-radius: 8px;
-        text-align: center;
-        font-weight: 700;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-    }
-
-    .product-cta:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
-    }
-
-    /* FOOTER */
-    footer {
-        border-top: 1px solid #334155;
-        padding: 48px 20px;
-        text-align: center;
-        color: #64748b;
-    }
-
-    footer p {
-        margin-bottom: 16px;
-    }
-
-    .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 32px;
-        margin-bottom: 32px;
-    }
-
-    .social-links a {
-        color: #fbbf24;
-        text-decoration: none;
-        font-weight: 600;
-        transition: color 0.3s ease;
-    }
-
-    .social-links a:hover {
-        color: #fcd34d;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-        header h1 {
-            font-size: 32px;
-        }
-
-        .hero h2 {
-            font-size: 28px;
-        }
-
-        .products-grid {
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
-
-        .product-image {
-            height: 300px;
-        }
-
-        .filters {
-            justify-content: center;
-        }
+    @media (prefers-reduced-motion: reduce){
+        *{ transition:none !important; animation:none !important; }
     }
 </style>
-```
-
 </head>
-
 <body>
 
-```
-<!-- HEADER -->
-<header>
+<!-- TOP BAR -->
+<div class="topbar">
     <div class="container">
-
-        <!-- LANGUAGE SELECTOR -->
+        <div class="brand-mark">Hit<strong>-E-Book</strong> · Atelier Numérique</div>
         <div class="language-selector">
-            <button class="language-btn active" onclick="changeLanguage('fr')">🇫🇷 Français</button>
-            <button class="language-btn" onclick="changeLanguage('pt')">🇵🇹 Português</button>
-            <button class="language-btn" onclick="changeLanguage('en')">🇬🇧 English</button>
-            <button class="language-btn" onclick="changeLanguage('de')">🇩🇪 Deutsch</button>
-        </div>
-
-        <h1>Hit<span class="gradient-text">-E-Book</span></h1>
-
-        <p id="headerDescription">
-            Guides pratiques qui te font gagner du temps et de l'argent
-        </p>
-    </div>
-</header>
-
-
-<!-- HERO + FILTERS -->
-<div class="hero">
-    <div class="container">
-
-        <h2 id="heroTitle">Tous nos ebooks</h2>
-
-        <p id="heroDescription">
-            Sélectionne un guide et commence à apprendre dès aujourd'hui
-        </p>
-
-        <div class="filters">
-
-            <button class="filter-btn active" onclick="filterProducts('all', this)" id="filterAll">
-                Tous
-            </button>
-
-            <button class="filter-btn" onclick="filterProducts('prompts', this)" id="filterPrompts">
-                Prompts & IA
-            </button>
-
-            <button class="filter-btn" onclick="filterProducts('creation', this)" id="filterCreation">
-                Création & Business
-            </button>
-
-            <button class="filter-btn" onclick="filterProducts('copywriting', this)" id="filterCopywriting">
-                Copywriting
-            </button>
-
+            <button class="language-btn active" onclick="changeLanguage('fr', this)">FR</button>
+            <button class="language-btn" onclick="changeLanguage('pt', this)">PT</button>
+            <button class="language-btn" onclick="changeLanguage('en', this)">EN</button>
+            <button class="language-btn" onclick="changeLanguage('de', this)">DE</button>
         </div>
     </div>
 </div>
 
+<!-- HEADER -->
+<header>
+    <div class="container">
+        <div class="eyebrow" id="eyebrowLabel">Collection 2026</div>
+        <h1>Hit<span class="gradient-text">-E-Book</span></h1>
+        <p id="headerDescription">Des guides exigeants, pensés pour ceux qui refusent l'approximation.</p>
+    </div>
+</header>
+
+<!-- HERO + FILTERS -->
+<div class="hero">
+    <div class="container">
+        <h2 id="heroTitle">La Collection</h2>
+        <p id="heroDescription">Chaque guide est une pièce à part entière — choisissez la vôtre.</p>
+
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterProducts('all', this)" id="filterAll">Tout voir</button>
+            <button class="filter-btn" onclick="filterProducts('prompts', this)" id="filterPrompts">Prompts &amp; IA</button>
+            <button class="filter-btn" onclick="filterProducts('creation', this)" id="filterCreation">Création &amp; Business</button>
+            <button class="filter-btn" onclick="filterProducts('copywriting', this)" id="filterCopywriting">Copywriting</button>
+        </div>
+    </div>
+</div>
 
 <!-- PRODUCTS GRID -->
 <div class="container">
     <div class="products-grid" id="productsGrid"></div>
 </div>
 
-
 <!-- FOOTER -->
 <footer>
     <div class="container">
-
-        <p id="footerQuestion">
-            Questions ? Contacte-moi sur :
-        </p>
-
+        <p id="footerQuestion">Une question ? Écrivez-moi sur</p>
         <div class="social-links">
             <a href="https://www.tiktok.com/@hitebook" target="_blank">TikTok</a>
             <a href="https://www.instagram.com/hit_e_book/" target="_blank">Instagram</a>
         </div>
-
-        <p id="footerCopyright">
-            © 2026. Tous droits réservés.
-        </p>
-
+        <p id="footerCopyright">© 2026 Hit-E-Book. Tous droits réservés.</p>
     </div>
 </footer>
-
 
 <script>
 
@@ -403,87 +512,95 @@
     const translations = {
 
         fr: {
-            headerDescription: "Guides pratiques qui te font gagner du temps et de l'argent",
-            heroTitle: "Tous nos ebooks",
-            heroDescription: "Sélectionne un guide et commence à apprendre dès aujourd'hui",
+            eyebrowLabel: "Collection 2026",
+            headerDescription: "Des guides exigeants, pensés pour ceux qui refusent l'approximation.",
+            heroTitle: "La Collection",
+            heroDescription: "Chaque guide est une pièce à part entière — choisissez la vôtre.",
 
-            all: "Tous",
+            all: "Tout voir",
             prompts: "Prompts & IA",
             creation: "Création & Business",
             copywriting: "Copywriting",
 
-            categoryPrompts: "✨ Prompts",
-            categoryCreation: "📚 Création",
-            categoryCopywriting: "✍️ Copywriting",
+            categoryPrompts: "Prompts",
+            categoryCreation: "Création",
+            categoryCopywriting: "Copywriting",
 
-            once: "Une fois",
-            buy: "Acheter maintenant",
+            once: "Paiement unique",
+            buy: "Acquérir",
+            arrow: "→",
 
-            footerQuestion: "Questions ? Contacte-moi sur :",
-            footerCopyright: "© 2026. Tous droits réservés."
+            footerQuestion: "Une question ? Écrivez-moi sur",
+            footerCopyright: "© 2026 Hit-E-Book. Tous droits réservés."
         },
 
         pt: {
-            headerDescription: "Guias práticos que ajudam você a economizar tempo e dinheiro",
-            heroTitle: "Todos os nossos ebooks",
-            heroDescription: "Escolha um guia e comece a aprender hoje mesmo",
+            eyebrowLabel: "Coleção 2026",
+            headerDescription: "Guias exigentes, feitos para quem recusa o improviso.",
+            heroTitle: "A Coleção",
+            heroDescription: "Cada guia é uma peça única — escolha a sua.",
 
-            all: "Todos",
+            all: "Ver tudo",
             prompts: "Prompts & IA",
             creation: "Criação & Negócios",
             copywriting: "Copywriting",
 
-            categoryPrompts: "✨ Prompts",
-            categoryCreation: "📚 Criação",
-            categoryCopywriting: "✍️ Copywriting",
+            categoryPrompts: "Prompts",
+            categoryCreation: "Criação",
+            categoryCopywriting: "Copywriting",
 
-            once: "Uma vez",
-            buy: "Comprar agora",
+            once: "Pagamento único",
+            buy: "Adquirir",
+            arrow: "→",
 
-            footerQuestion: "Dúvidas? Entre em contato comigo:",
-            footerCopyright: "© 2026. Todos os direitos reservados."
+            footerQuestion: "Dúvidas? Fale comigo em",
+            footerCopyright: "© 2026 Hit-E-Book. Todos os direitos reservados."
         },
 
         en: {
-            headerDescription: "Practical guides that help you save time and make money",
-            heroTitle: "All our ebooks",
-            heroDescription: "Choose a guide and start learning today",
+            eyebrowLabel: "Collection 2026",
+            headerDescription: "Exacting guides, made for those who refuse to wing it.",
+            heroTitle: "The Collection",
+            heroDescription: "Each guide is a piece in its own right — choose yours.",
 
-            all: "All",
+            all: "View all",
             prompts: "Prompts & AI",
             creation: "Creation & Business",
             copywriting: "Copywriting",
 
-            categoryPrompts: "✨ Prompts",
-            categoryCreation: "📚 Creation",
-            categoryCopywriting: "✍️ Copywriting",
+            categoryPrompts: "Prompts",
+            categoryCreation: "Creation",
+            categoryCopywriting: "Copywriting",
 
-            once: "One-time",
-            buy: "Buy now",
+            once: "One-time payment",
+            buy: "Acquire",
+            arrow: "→",
 
-            footerQuestion: "Questions? Contact me on:",
-            footerCopyright: "© 2026. All rights reserved."
+            footerQuestion: "Questions? Reach me on",
+            footerCopyright: "© 2026 Hit-E-Book. All rights reserved."
         },
 
         de: {
-            headerDescription: "Praktische Leitfäden, die dir helfen, Zeit und Geld zu sparen",
-            heroTitle: "Alle unsere E-Books",
-            heroDescription: "Wähle einen Leitfaden und beginne noch heute zu lernen",
+            eyebrowLabel: "Kollektion 2026",
+            headerDescription: "Anspruchsvolle Leitfäden für alle, die keine Kompromisse eingehen.",
+            heroTitle: "Die Kollektion",
+            heroDescription: "Jeder Leitfaden ist ein eigenständiges Werk — wähle deins.",
 
-            all: "Alle",
+            all: "Alle ansehen",
             prompts: "Prompts & KI",
             creation: "Erstellung & Business",
             copywriting: "Copywriting",
 
-            categoryPrompts: "✨ Prompts",
-            categoryCreation: "📚 Erstellung",
-            categoryCopywriting: "✍️ Copywriting",
+            categoryPrompts: "Prompts",
+            categoryCreation: "Erstellung",
+            categoryCopywriting: "Copywriting",
 
-            once: "Einmalig",
-            buy: "Jetzt kaufen",
+            once: "Einmalzahlung",
+            buy: "Erwerben",
+            arrow: "→",
 
-            footerQuestion: "Fragen? Kontaktiere mich auf:",
-            footerCopyright: "© 2026. Alle Rechte vorbehalten."
+            footerQuestion: "Fragen? Schreib mir auf",
+            footerCopyright: "© 2026 Hit-E-Book. Alle Rechte vorbehalten."
         }
 
     };
@@ -497,6 +614,7 @@
 
         {
             id: 1,
+            edition: "N° 01",
             category: "prompts",
             image: "cover-ebook1.png",
             price: 14.99,
@@ -507,19 +625,16 @@
                 description: "50 prompts ChatGPT & Claude qui rapportent de l'argent. Prêts à copier-coller.",
                 features: ["50 prompts structurés", "ChatGPT & Claude", "PDF + DOCX", "Accès à vie"]
             },
-
             pt: {
                 title: "50 Prompts de IA",
                 description: "50 prompts para ChatGPT e Claude que podem ajudar você a ganhar dinheiro. Prontos para copiar e colar.",
                 features: ["50 prompts estruturados", "ChatGPT e Claude", "PDF + DOCX", "Acesso vitalício"]
             },
-
             en: {
                 title: "50 AI Prompts",
                 description: "50 ChatGPT & Claude prompts designed to help you make money. Ready to copy and paste.",
                 features: ["50 structured prompts", "ChatGPT & Claude", "PDF + DOCX", "Lifetime access"]
             },
-
             de: {
                 title: "50 KI-Prompts",
                 description: "50 ChatGPT- und Claude-Prompts, die dir helfen können, Geld zu verdienen. Sofort zum Kopieren und Einfügen bereit.",
@@ -527,9 +642,9 @@
             }
         },
 
-
         {
             id: 2,
+            edition: "N° 02",
             category: "copywriting",
             image: "cover-ebook3.png",
             price: 24.99,
@@ -540,19 +655,16 @@
                 description: "50+ formules et scripts de copywriting prêts à utiliser immédiatement.",
                 features: ["5 formules éprouvées", "25 scripts TikTok/Insta", "15 scripts email", "10 templates landing"]
             },
-
             pt: {
                 title: "Copywriting que vende",
                 description: "Mais de 50 fórmulas e scripts de copywriting prontos para usar imediatamente.",
                 features: ["5 fórmulas comprovadas", "25 scripts para TikTok/Insta", "15 scripts de email", "10 templates de landing pages"]
             },
-
             en: {
                 title: "Copywriting That Sells",
                 description: "50+ copywriting formulas and scripts ready to use immediately.",
                 features: ["5 proven formulas", "25 TikTok/Insta scripts", "15 email scripts", "10 landing page templates"]
             },
-
             de: {
                 title: "Copywriting, das verkauft",
                 description: "Über 50 Copywriting-Formeln und Skripte, die sofort einsatzbereit sind.",
@@ -560,9 +672,9 @@
             }
         },
 
-
         {
             id: 3,
+            edition: "N° 03",
             category: "creation",
             image: "cover-ebook2.png",
             price: 34.99,
@@ -573,19 +685,16 @@
                 description: "Le guide complet pour créer et vendre un ebook en une semaine.",
                 features: ["Plan jour par jour", "Sans bullshit", "Prêt à lancer", "Checklist incluse"]
             },
-
             pt: {
                 title: "Crie um ebook em 7 dias",
                 description: "O guia completo para criar e vender um ebook em apenas uma semana.",
                 features: ["Plano dia a dia", "Sem enrolação", "Pronto para lançar", "Checklist incluído"]
             },
-
             en: {
                 title: "Create an Ebook in 7 Days",
                 description: "The complete guide to creating and selling an ebook in one week.",
                 features: ["Day-by-day plan", "No bullshit", "Ready to launch", "Checklist included"]
             },
-
             de: {
                 title: "Erstelle ein E-Book in 7 Tagen",
                 description: "Der komplette Leitfaden, um innerhalb einer Woche ein E-Book zu erstellen und zu verkaufen.",
@@ -611,21 +720,19 @@
     function renderProducts(filter = "all") {
 
         const grid = document.getElementById("productsGrid");
-
         grid.innerHTML = "";
 
         const filtered = filter === "all"
             ? products
             : products.filter(product => product.category === filter);
 
+        const t = translations[currentLanguage];
 
         filtered.forEach(product => {
 
             const data = product[currentLanguage];
-            const t = translations[currentLanguage];
 
             let categoryName;
-
             if (product.category === "prompts") {
                 categoryName = t.categoryPrompts;
             } else if (product.category === "creation") {
@@ -634,69 +741,42 @@
                 categoryName = t.categoryCopywriting;
             }
 
-
             const card = document.createElement("div");
-
             card.className = "product-card";
 
             card.innerHTML = `
+                <span class="product-edition">${product.edition}</span>
 
                 <div class="product-image">
-                    <img 
-                        src="${product.image}" 
-                        alt="${data.title}"
-                        loading="lazy"
-                    >
+                    <img src="${product.image}" alt="${data.title}" loading="lazy">
                 </div>
 
                 <div class="product-content">
 
-                    <span class="product-category">
-                        ${categoryName}
-                    </span>
+                    <span class="product-category">${categoryName}</span>
 
-                    <h3 class="product-title">
-                        ${data.title}
-                    </h3>
+                    <h3 class="product-title">${data.title}</h3>
 
-                    <p class="product-desc">
-                        ${data.description}
-                    </p>
+                    <p class="product-desc">${data.description}</p>
 
                     <ul class="product-features">
-
-                        ${data.features
-                            .map(feature => `<li>${feature}</li>`)
-                            .join("")}
-
+                        ${data.features.map(feature => `<li>${feature}</li>`).join("")}
                     </ul>
 
                     <div class="product-price">
-
-                        <span class="price-tag">
-                            <span class="currency">€</span>${product.price}
-                        </span>
-
-                        <small style="color: #94a3b8;">
-                            ${t.once}
-                        </small>
-
+                        <span class="price-tag"><span class="currency">€</span>${product.price}</span>
+                        <span class="price-note">${t.once}</span>
                     </div>
 
-                    <a 
-                        href="${product.link}" 
-                        class="product-cta"
-                    >
-                        ${t.buy}
+                    <a href="${product.link}" class="product-cta">
+                        <span>${t.buy}</span><span class="arrow">${t.arrow}</span>
                     </a>
 
                 </div>
             `;
 
             grid.appendChild(card);
-
         });
-
     }
 
 
@@ -704,55 +784,30 @@
        CHANGER DE LANGUE
     ========================= */
 
-    function changeLanguage(language) {
+    function changeLanguage(language, btn) {
 
         currentLanguage = language;
-
         const t = translations[language];
 
-        // Mise à jour de la langue HTML
         document.documentElement.lang = language;
 
-        // Mise à jour des textes
-        document.getElementById("headerDescription").textContent =
-            t.headerDescription;
+        document.getElementById("eyebrowLabel").textContent = t.eyebrowLabel;
+        document.getElementById("headerDescription").textContent = t.headerDescription;
+        document.getElementById("heroTitle").textContent = t.heroTitle;
+        document.getElementById("heroDescription").textContent = t.heroDescription;
+        document.getElementById("filterAll").textContent = t.all;
+        document.getElementById("filterPrompts").textContent = t.prompts;
+        document.getElementById("filterCreation").textContent = t.creation;
+        document.getElementById("filterCopywriting").textContent = t.copywriting;
+        document.getElementById("footerQuestion").textContent = t.footerQuestion;
+        document.getElementById("footerCopyright").textContent = t.footerCopyright;
 
-        document.getElementById("heroTitle").textContent =
-            t.heroTitle;
-
-        document.getElementById("heroDescription").textContent =
-            t.heroDescription;
-
-        document.getElementById("filterAll").textContent =
-            t.all;
-
-        document.getElementById("filterPrompts").textContent =
-            t.prompts;
-
-        document.getElementById("filterCreation").textContent =
-            t.creation;
-
-        document.getElementById("filterCopywriting").textContent =
-            t.copywriting;
-
-        document.getElementById("footerQuestion").textContent =
-            t.footerQuestion;
-
-        document.getElementById("footerCopyright").textContent =
-            t.footerCopyright;
-
-
-        // Mise à jour du bouton de langue actif
         document.querySelectorAll(".language-btn").forEach(button => {
             button.classList.remove("active");
         });
+        btn.classList.add("active");
 
-        event.target.classList.add("active");
-
-
-        // Réafficher les produits dans la nouvelle langue
         renderProducts(currentFilter);
-
     }
 
 
@@ -771,7 +826,6 @@
         button.classList.add("active");
 
         renderProducts(category);
-
     }
 
 
@@ -782,7 +836,5 @@
     renderProducts();
 
 </script>
-```
-
 </body>
 </html>
