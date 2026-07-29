@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Des guides numériques exigeants sur les prompts IA, le copywriting et la création de business en ligne. Paiement sécurisé, accès immédiat.">
+<link rel="icon" type="image/x-icon" href="hitebook.ico">
+<title>Hit-E-Book — Collection</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,450&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <div class="container">
+        <div class="brand-mark">Hit<strong>-E-Book</strong> · Atelier Numérique</div>
+        <div class="topbar-right">
+            <a href="#collection" class="topbar-cta" id="topbarCta">Voir la collection</a>
+            <div class="language-selector">
+                <button class="language-btn active" onclick="changeLanguage('fr', this)">FR</button>
+                <button class="language-btn" onclick="changeLanguage('pt', this)">PT</button>
+                <button class="language-btn" onclick="changeLanguage('en', this)">EN</button>
+                <button class="language-btn" onclick="changeLanguage('de', this)">DE</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header>
+    <div class="container">
+        <div class="eyebrow" id="eyebrowLabel">Collection 2026</div>
+        <h1>Hit<span class="gradient-text">-E-Book</span></h1>
+        <p id="headerDescription">Des guides exigeants, pensés pour ceux qui refusent l'approximation.</p>
+        <a href="#collection" class="header-cta" id="headerCta"><span>Découvrir la collection</span><span>→</span></a>
+        <div class="trust-bar">
+            <span id="trust1">Paiement 100% sécurisé</span>
+            <span id="trust2">Accès immédiat après achat</span>
+            <span id="trust3">Garantie 14 jours satisfait ou remboursé</span>
+        </div>
+    </div>
+</header>
+
+<!-- HERO + FILTERS -->
+<div class="hero" id="collection">
+    <div class="container">
+        <h2 id="heroTitle">La Collection</h2>
+        <p id="heroDescription">Chaque guide est une pièce à part entière — choisissez la vôtre.</p>
+
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterProducts('all', this)" id="filterAll">Tout voir</button>
+            <button class="filter-btn" onclick="filterProducts('prompts', this)" id="filterPrompts">Prompts &amp; IA</button>
+            <button class="filter-btn" onclick="filterProducts('creation', this)" id="filterCreation">Création &amp; Business</button>
+            <button class="filter-btn" onclick="filterProducts('copywriting', this)" id="filterCopywriting">Copywriting</button>
+        </div>
+    </div>
+</div>
+
+<!-- PRODUCTS GRID -->
+<div class="container">
+    <div class="products-grid" id="productsGrid"></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-eyebrow" id="howEyebrow">Simple &amp; direct</span>
+            <h2 class="section-title" id="howTitle">Comment ça marche</h2>
+        </div>
+        <div class="steps" id="stepsGrid"></div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-eyebrow" id="testiEyebrow">Retours</span>
+            <h2 class="section-title" id="testiTitle">Ce qu'en disent les lecteurs</h2>
+        </div>
+        <div class="testimonials" id="testimonialsGrid"></div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="border-bottom:none;">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-eyebrow" id="faqEyebrow">Questions</span>
+            <h2 class="section-title" id="faqTitle">Avant de vous lancer</h2>
+        </div>
+        <div class="faq" id="faqList"></div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p class="footer-guarantee" id="footerGuarantee">14 jours pour changer d'avis · Remboursement intégral</p>
+        <p id="footerQuestion">Une question ? Écrivez-moi sur</p>
+        <div class="social-links">
+            <a href="https://www.tiktok.com/@hitebook" target="_blank">TikTok</a>
+            <a href="https://www.instagram.com/hit_e_book/" target="_blank">Instagram</a>
+        </div>
+        <p id="footerCopyright">© 2026 Hit-E-Book. Tous droits réservés.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
