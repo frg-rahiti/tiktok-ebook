@@ -3,18 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Des guides numériques exigeants sur les prompts IA, le copywriting et la création de business en ligne. Paiement sécurisé, accès immédiat.">
 <link rel="icon" type="image/x-icon" href="hitebook.ico">
 <title>Hit-E-Book — Collection</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,450&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
     :root{
         --bg: #0a0d16;
         --bg-panel: #12162389;
         --panel-solid: #12161f;
+        --panel-raised: #171c29;
         --gold: #c9a24b;
         --gold-light: #e6c877;
         --gold-dim: rgba(201,162,75,0.22);
@@ -22,6 +24,7 @@
         --cream: #f3ede0;
         --muted: #8991a6;
         --muted-dim: #5b6478;
+        --green: #7fae8f;
     }
 
     *{ margin:0; padding:0; box-sizing:border-box; }
@@ -38,7 +41,6 @@
         -webkit-font-smoothing: antialiased;
     }
 
-    /* faint grain overlay */
     body::before{
         content:"";
         position:fixed; inset:0;
@@ -58,6 +60,12 @@
     .topbar{
         border-bottom:1px solid var(--hairline);
         padding:18px 0;
+        position:sticky;
+        top:0;
+        background: rgba(10,13,22,0.86);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index:50;
     }
     .topbar .container{
         display:flex;
@@ -74,6 +82,27 @@
         color: var(--muted);
     }
     .brand-mark strong{ color: var(--gold-light); font-weight:600; }
+
+    .topbar-right{
+        display:flex;
+        align-items:center;
+        gap:22px;
+    }
+
+    .topbar-cta{
+        font-family:'Inter', sans-serif;
+        font-size:12px;
+        font-weight:600;
+        letter-spacing:0.06em;
+        text-transform:uppercase;
+        color: var(--gold-light);
+        border:1px solid var(--gold-dim);
+        padding:9px 18px;
+        text-decoration:none;
+        transition: all 0.25s ease;
+        white-space:nowrap;
+    }
+    .topbar-cta:hover{ background: var(--gold); color:#0a0d16; border-color: var(--gold); }
 
     .language-selector{
         display:flex;
@@ -99,7 +128,7 @@
 
     /* ============ HEADER / HERO ============ */
     header{
-        padding:88px 20px 56px;
+        padding:88px 20px 40px;
         text-align:center;
         border-bottom:1px solid var(--hairline);
         position:relative;
@@ -145,8 +174,53 @@
         font-size:17px;
         color: var(--muted);
         max-width:480px;
-        margin:0 auto;
+        margin:0 auto 40px;
         font-weight:400;
+    }
+
+    .header-cta{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        background: var(--gold);
+        color:#0a0d16;
+        border:1px solid var(--gold);
+        padding:15px 30px;
+        text-align:center;
+        font-family:'Inter', sans-serif;
+        font-weight:600;
+        font-size:13px;
+        letter-spacing:0.08em;
+        text-transform:uppercase;
+        text-decoration:none;
+        cursor:pointer;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        margin-bottom:40px;
+    }
+    .header-cta:hover{ transform: translateY(-2px); box-shadow: 0 12px 30px -8px rgba(201,162,75,0.45); }
+
+    /* trust bar */
+    .trust-bar{
+        display:flex;
+        justify-content:center;
+        gap:36px;
+        flex-wrap:wrap;
+        font-family:'JetBrains Mono', monospace;
+        font-size:11px;
+        letter-spacing:0.04em;
+        color: var(--muted-dim);
+    }
+    .trust-bar span{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+    }
+    .trust-bar span::before{
+        content:"";
+        width:5px; height:5px;
+        border-radius:50%;
+        background: var(--gold);
+        flex-shrink:0;
     }
 
     /* ============ HERO STRIP ============ */
@@ -214,7 +288,7 @@
         gap:1px;
         background: var(--hairline);
         border:1px solid var(--hairline);
-        margin:64px 0 100px;
+        margin:64px 0 0;
     }
 
     .product-card{
@@ -233,6 +307,20 @@
         font-size:11px;
         letter-spacing:0.1em;
         color: var(--muted-dim);
+        z-index:3;
+    }
+
+    .product-badge{
+        position:absolute;
+        top:22px; left:0;
+        background: var(--gold);
+        color:#0a0d16;
+        font-family:'JetBrains Mono', monospace;
+        font-size:10px;
+        font-weight:700;
+        letter-spacing:0.08em;
+        text-transform:uppercase;
+        padding:5px 12px 5px 14px;
         z-index:3;
     }
 
@@ -323,7 +411,7 @@
         display:flex;
         justify-content:space-between;
         align-items:flex-end;
-        margin-bottom:22px;
+        margin-bottom:16px;
         padding-top:20px;
         margin-top:auto;
         border-top:1px solid var(--hairline);
@@ -352,6 +440,18 @@
         color: var(--muted-dim);
     }
 
+    .product-guarantee{
+        font-family:'JetBrains Mono', monospace;
+        font-size:10.5px;
+        letter-spacing:0.03em;
+        color: var(--green);
+        margin-bottom:14px;
+        display:flex;
+        align-items:center;
+        gap:7px;
+    }
+    .product-guarantee::before{ content:"✓"; }
+
     .product-cta{
         display:flex;
         align-items:center;
@@ -379,11 +479,178 @@
     }
     .product-cta:hover .arrow{ transform: translateX(4px); }
 
+    /* ============ SECTION SHELL ============ */
+    .section{
+        padding:100px 20px;
+        border-bottom:1px solid var(--hairline);
+    }
+    .section-head{
+        text-align:center;
+        max-width:560px;
+        margin:0 auto 64px;
+    }
+    .section-eyebrow{
+        font-family:'JetBrains Mono', monospace;
+        font-size:11px;
+        letter-spacing:0.2em;
+        text-transform:uppercase;
+        color: var(--gold);
+        margin-bottom:18px;
+        display:block;
+    }
+    .section-title{
+        font-family:'Fraunces', serif;
+        font-weight:450;
+        font-style:italic;
+        font-size:clamp(28px, 3.6vw, 38px);
+        color: var(--cream);
+        margin-bottom:14px;
+    }
+    .section-sub{
+        font-size:15px;
+        color: var(--muted);
+    }
+
+    /* ============ HOW IT WORKS ============ */
+    .steps{
+        display:grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap:1px;
+        background: var(--hairline);
+        border:1px solid var(--hairline);
+        max-width:980px;
+        margin:0 auto;
+    }
+    .step{
+        background: var(--panel-solid);
+        padding:40px 32px;
+        text-align:left;
+    }
+    .step-num{
+        font-family:'Fraunces', serif;
+        font-style:italic;
+        font-size:36px;
+        color: var(--gold);
+        margin-bottom:18px;
+        line-height:1;
+    }
+    .step-title{
+        font-family:'Fraunces', serif;
+        font-size:19px;
+        margin-bottom:10px;
+        color: var(--cream);
+    }
+    .step-desc{
+        font-size:13.5px;
+        color: var(--muted);
+        line-height:1.65;
+    }
+
+    /* ============ TESTIMONIALS ============ */
+    .testimonials{
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap:1px;
+        background: var(--hairline);
+        border:1px solid var(--hairline);
+        max-width:1000px;
+        margin:0 auto;
+    }
+    .testimonial{
+        background: var(--panel-solid);
+        padding:32px 30px;
+    }
+    .testimonial-stars{
+        color: var(--gold);
+        font-size:13px;
+        letter-spacing:2px;
+        margin-bottom:16px;
+    }
+    .testimonial-quote{
+        font-family:'Fraunces', serif;
+        font-style:italic;
+        font-size:16px;
+        color: var(--cream);
+        line-height:1.55;
+        margin-bottom:20px;
+    }
+    .testimonial-author{
+        font-family:'JetBrains Mono', monospace;
+        font-size:11px;
+        letter-spacing:0.05em;
+        color: var(--muted-dim);
+        text-transform:uppercase;
+    }
+    .testimonials-note{
+        text-align:center;
+        font-family:'JetBrains Mono', monospace;
+        font-size:10.5px;
+        color: var(--muted-dim);
+        margin-top:24px;
+        opacity:0.7;
+    }
+
+    /* ============ FAQ ============ */
+    .faq{
+        max-width:760px;
+        margin:0 auto;
+    }
+    .faq-item{
+        border-bottom:1px solid var(--hairline);
+    }
+    .faq-question{
+        width:100%;
+        background:none;
+        border:none;
+        color: var(--cream);
+        text-align:left;
+        padding:24px 4px;
+        font-family:'Fraunces', serif;
+        font-size:18px;
+        cursor:pointer;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:20px;
+    }
+    .faq-icon{
+        color: var(--gold);
+        font-family:'JetBrains Mono', monospace;
+        font-size:18px;
+        flex-shrink:0;
+        transition: transform 0.3s ease;
+    }
+    .faq-item.open .faq-icon{ transform: rotate(45deg); }
+    .faq-answer{
+        max-height:0;
+        overflow:hidden;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+        padding:0 4px;
+    }
+    .faq-item.open .faq-answer{
+        max-height:300px;
+        padding:0 4px 24px;
+    }
+    .faq-answer p{
+        font-size:14.5px;
+        color: var(--muted);
+        line-height:1.7;
+        max-width:640px;
+    }
+
     /* ============ FOOTER ============ */
     footer{
-        border-top:1px solid var(--hairline);
         padding:56px 20px 48px;
         text-align:center;
+    }
+
+    .footer-guarantee{
+        font-family:'JetBrains Mono', monospace;
+        font-size:11px;
+        letter-spacing:0.06em;
+        color: var(--muted-dim);
+        margin-bottom:28px;
+        text-transform:uppercase;
     }
 
     footer p{
@@ -432,14 +699,18 @@
 
     /* ============ RESPONSIVE ============ */
     @media (max-width: 768px){
-        header{ padding:64px 20px 44px; }
+        header{ padding:64px 20px 36px; }
         header h1{ font-size:40px; }
         .hero h2{ font-size:24px; }
         .filters{ gap:20px; }
-        .products-grid{ grid-template-columns:1fr; margin:44px 0 72px; }
+        .products-grid{ grid-template-columns:1fr; margin:44px 0 0; }
         .product-image{ height:320px; }
         .product-content{ padding:28px 24px 26px; }
         .topbar .container{ justify-content:center; text-align:center; }
+        .topbar-right{ width:100%; justify-content:center; }
+        .section{ padding:64px 20px; }
+        .steps{ grid-template-columns:1fr; }
+        .trust-bar{ gap:18px 22px; }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -453,11 +724,14 @@
 <div class="topbar">
     <div class="container">
         <div class="brand-mark">Hit<strong>-E-Book</strong> · Atelier Numérique</div>
-        <div class="language-selector">
-            <button class="language-btn active" onclick="changeLanguage('fr', this)">FR</button>
-            <button class="language-btn" onclick="changeLanguage('pt', this)">PT</button>
-            <button class="language-btn" onclick="changeLanguage('en', this)">EN</button>
-            <button class="language-btn" onclick="changeLanguage('de', this)">DE</button>
+        <div class="topbar-right">
+            <a href="#collection" class="topbar-cta" id="topbarCta">Voir la collection</a>
+            <div class="language-selector">
+                <button class="language-btn active" onclick="changeLanguage('fr', this)">FR</button>
+                <button class="language-btn" onclick="changeLanguage('pt', this)">PT</button>
+                <button class="language-btn" onclick="changeLanguage('en', this)">EN</button>
+                <button class="language-btn" onclick="changeLanguage('de', this)">DE</button>
+            </div>
         </div>
     </div>
 </div>
@@ -468,11 +742,17 @@
         <div class="eyebrow" id="eyebrowLabel">Collection 2026</div>
         <h1>Hit<span class="gradient-text">-E-Book</span></h1>
         <p id="headerDescription">Des guides exigeants, pensés pour ceux qui refusent l'approximation.</p>
+        <a href="#collection" class="header-cta" id="headerCta"><span>Découvrir la collection</span><span>→</span></a>
+        <div class="trust-bar">
+            <span id="trust1">Paiement 100% sécurisé</span>
+            <span id="trust2">Accès immédiat après achat</span>
+            <span id="trust3">Garantie 14 jours satisfait ou remboursé</span>
+        </div>
     </div>
 </header>
 
 <!-- HERO + FILTERS -->
-<div class="hero">
+<div class="hero" id="collection">
     <div class="container">
         <h2 id="heroTitle">La Collection</h2>
         <p id="heroDescription">Chaque guide est une pièce à part entière — choisissez la vôtre.</p>
@@ -491,9 +771,44 @@
     <div class="products-grid" id="productsGrid"></div>
 </div>
 
+<!-- HOW IT WORKS -->
+<section class="section">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-eyebrow" id="howEyebrow">Simple &amp; direct</span>
+            <h2 class="section-title" id="howTitle">Comment ça marche</h2>
+        </div>
+        <div class="steps" id="stepsGrid"></div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-eyebrow" id="testiEyebrow">Retours</span>
+            <h2 class="section-title" id="testiTitle">Ce qu'en disent les lecteurs</h2>
+        </div>
+        <div class="testimonials" id="testimonialsGrid"></div>
+        <p class="testimonials-note" id="testiNote">— remplacez cette section par vos vrais avis clients avant publication —</p>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="border-bottom:none;">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-eyebrow" id="faqEyebrow">Questions</span>
+            <h2 class="section-title" id="faqTitle">Avant de vous lancer</h2>
+        </div>
+        <div class="faq" id="faqList"></div>
+    </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
     <div class="container">
+        <p class="footer-guarantee" id="footerGuarantee">14 jours pour changer d'avis · Remboursement intégral</p>
         <p id="footerQuestion">Une question ? Écrivez-moi sur</p>
         <div class="social-links">
             <a href="https://www.tiktok.com/@hitebook" target="_blank">TikTok</a>
@@ -514,6 +829,11 @@
         fr: {
             eyebrowLabel: "Collection 2026",
             headerDescription: "Des guides exigeants, pensés pour ceux qui refusent l'approximation.",
+            headerCta: "Découvrir la collection",
+            topbarCta: "Voir la collection",
+            trust1: "Paiement 100% sécurisé",
+            trust2: "Accès immédiat après achat",
+            trust3: "Garantie 14 jours satisfait ou remboursé",
             heroTitle: "La Collection",
             heroDescription: "Chaque guide est une pièce à part entière — choisissez la vôtre.",
 
@@ -529,7 +849,35 @@
             once: "Paiement unique",
             buy: "Acquérir",
             arrow: "→",
+            guarantee: "Garanti 14 jours",
 
+            howEyebrow: "Simple & direct",
+            howTitle: "Comment ça marche",
+            steps: [
+                { title: "Choisissez votre guide", desc: "Sélectionnez le ebook qui correspond à votre objectif du moment." },
+                { title: "Payez en toute sécurité", desc: "Paiement chiffré via Stripe. Aucune donnée bancaire ne transite par ce site." },
+                { title: "Recevez-le immédiatement", desc: "Lien de téléchargement envoyé par email en quelques secondes, au format PDF et DOCX." }
+            ],
+
+            testiEyebrow: "Retours",
+            testiTitle: "Ce qu'en disent les lecteurs",
+            testiNote: "— remplacez cette section par vos vrais avis clients avant publication —",
+            testimonials: [
+                { quote: "Ajoutez ici la citation d'un premier client.", author: "Votre client" },
+                { quote: "Ajoutez ici un deuxième retour concret.", author: "Votre client" },
+                { quote: "Ajoutez ici un résultat chiffré si possible.", author: "Votre client" }
+            ],
+
+            faqEyebrow: "Questions",
+            faqTitle: "Avant de vous lancer",
+            faq: [
+                { q: "Comment est-ce que je reçois mon ebook ?", a: "Dès la confirmation du paiement, un lien de téléchargement vous est envoyé automatiquement par email, au format PDF et DOCX. Aucun compte n'est nécessaire." },
+                { q: "Le paiement est-il sécurisé ?", a: "Oui, tous les paiements passent par Stripe, la même infrastructure utilisée par des millions d'entreprises. Vos données bancaires ne transitent jamais par ce site." },
+                { q: "Puis-je me faire rembourser ?", a: "Vous disposez de 14 jours après l'achat pour demander un remboursement intégral si le contenu ne vous convient pas, sans justification." },
+                { q: "Ces guides conviennent-ils aux débutants ?", a: "Oui. Chaque guide est conçu pour être appliqué immédiatement, aucune expérience préalable n'est requise." }
+            ],
+
+            footerGuarantee: "14 jours pour changer d'avis · Remboursement intégral",
             footerQuestion: "Une question ? Écrivez-moi sur",
             footerCopyright: "© 2026 Hit-E-Book. Tous droits réservés."
         },
@@ -537,6 +885,11 @@
         pt: {
             eyebrowLabel: "Coleção 2026",
             headerDescription: "Guias exigentes, feitos para quem recusa o improviso.",
+            headerCta: "Ver a coleção",
+            topbarCta: "Ver a coleção",
+            trust1: "Pagamento 100% seguro",
+            trust2: "Acesso imediato após a compra",
+            trust3: "Garantia de 14 dias ou seu dinheiro de volta",
             heroTitle: "A Coleção",
             heroDescription: "Cada guia é uma peça única — escolha a sua.",
 
@@ -552,7 +905,35 @@
             once: "Pagamento único",
             buy: "Adquirir",
             arrow: "→",
+            guarantee: "Garantia de 14 dias",
 
+            howEyebrow: "Simples e direto",
+            howTitle: "Como funciona",
+            steps: [
+                { title: "Escolha seu guia", desc: "Selecione o ebook que combina com seu objetivo atual." },
+                { title: "Pague com segurança", desc: "Pagamento criptografado via Stripe. Nenhum dado bancário passa por este site." },
+                { title: "Receba na hora", desc: "Link de download enviado por email em segundos, em PDF e DOCX." }
+            ],
+
+            testiEyebrow: "Avaliações",
+            testiTitle: "O que dizem os leitores",
+            testiNote: "— substitua esta seção pelas suas avaliações reais antes de publicar —",
+            testimonials: [
+                { quote: "Adicione aqui a citação de um primeiro cliente.", author: "Seu cliente" },
+                { quote: "Adicione aqui um segundo depoimento concreto.", author: "Seu cliente" },
+                { quote: "Adicione aqui um resultado com números, se possível.", author: "Seu cliente" }
+            ],
+
+            faqEyebrow: "Perguntas",
+            faqTitle: "Antes de começar",
+            faq: [
+                { q: "Como recebo meu ebook?", a: "Assim que o pagamento é confirmado, um link de download é enviado automaticamente por email, em PDF e DOCX. Nenhuma conta é necessária." },
+                { q: "O pagamento é seguro?", a: "Sim, todos os pagamentos passam pelo Stripe, a mesma infraestrutura usada por milhões de empresas. Seus dados bancários nunca passam por este site." },
+                { q: "Posso pedir reembolso?", a: "Você tem 14 dias após a compra para solicitar reembolso integral caso o conteúdo não atenda suas expectativas, sem necessidade de justificativa." },
+                { q: "Esses guias servem para iniciantes?", a: "Sim. Cada guia foi feito para ser aplicado imediatamente, sem exigir experiência prévia." }
+            ],
+
+            footerGuarantee: "14 dias para mudar de ideia · Reembolso integral",
             footerQuestion: "Dúvidas? Fale comigo em",
             footerCopyright: "© 2026 Hit-E-Book. Todos os direitos reservados."
         },
@@ -560,6 +941,11 @@
         en: {
             eyebrowLabel: "Collection 2026",
             headerDescription: "Exacting guides, made for those who refuse to wing it.",
+            headerCta: "Discover the collection",
+            topbarCta: "View the collection",
+            trust1: "100% secure payment",
+            trust2: "Instant access after purchase",
+            trust3: "14-day money-back guarantee",
             heroTitle: "The Collection",
             heroDescription: "Each guide is a piece in its own right — choose yours.",
 
@@ -575,7 +961,35 @@
             once: "One-time payment",
             buy: "Acquire",
             arrow: "→",
+            guarantee: "14-day guarantee",
 
+            howEyebrow: "Simple & direct",
+            howTitle: "How it works",
+            steps: [
+                { title: "Choose your guide", desc: "Pick the ebook that matches what you're trying to achieve right now." },
+                { title: "Pay securely", desc: "Encrypted payment via Stripe. No banking data ever passes through this site." },
+                { title: "Get it instantly", desc: "Download link sent by email within seconds, in PDF and DOCX format." }
+            ],
+
+            testiEyebrow: "Feedback",
+            testiTitle: "What readers are saying",
+            testiNote: "— replace this section with your real customer reviews before publishing —",
+            testimonials: [
+                { quote: "Add your first customer quote here.", author: "Your customer" },
+                { quote: "Add a second concrete review here.", author: "Your customer" },
+                { quote: "Add a measurable result here if possible.", author: "Your customer" }
+            ],
+
+            faqEyebrow: "Questions",
+            faqTitle: "Before you start",
+            faq: [
+                { q: "How do I receive my ebook?", a: "As soon as payment is confirmed, a download link is automatically sent to your email, in PDF and DOCX format. No account required." },
+                { q: "Is payment secure?", a: "Yes, all payments go through Stripe, the same infrastructure used by millions of businesses. Your banking data never passes through this site." },
+                { q: "Can I get a refund?", a: "You have 14 days after purchase to request a full refund if the content isn't right for you, no questions asked." },
+                { q: "Are these guides suitable for beginners?", a: "Yes. Each guide is designed to be applied immediately, no prior experience required." }
+            ],
+
+            footerGuarantee: "14 days to change your mind · Full refund",
             footerQuestion: "Questions? Reach me on",
             footerCopyright: "© 2026 Hit-E-Book. All rights reserved."
         },
@@ -583,6 +997,11 @@
         de: {
             eyebrowLabel: "Kollektion 2026",
             headerDescription: "Anspruchsvolle Leitfäden für alle, die keine Kompromisse eingehen.",
+            headerCta: "Kollektion entdecken",
+            topbarCta: "Kollektion ansehen",
+            trust1: "100% sichere Zahlung",
+            trust2: "Sofortiger Zugang nach dem Kauf",
+            trust3: "14 Tage Geld-zurück-Garantie",
             heroTitle: "Die Kollektion",
             heroDescription: "Jeder Leitfaden ist ein eigenständiges Werk — wähle deins.",
 
@@ -598,7 +1017,35 @@
             once: "Einmalzahlung",
             buy: "Erwerben",
             arrow: "→",
+            guarantee: "14 Tage Garantie",
 
+            howEyebrow: "Einfach & direkt",
+            howTitle: "So funktioniert's",
+            steps: [
+                { title: "Leitfaden wählen", desc: "Wähle das E-Book, das zu deinem aktuellen Ziel passt." },
+                { title: "Sicher bezahlen", desc: "Verschlüsselte Zahlung über Stripe. Keine Bankdaten laufen über diese Seite." },
+                { title: "Sofort erhalten", desc: "Download-Link innerhalb von Sekunden per E-Mail, als PDF und DOCX." }
+            ],
+
+            testiEyebrow: "Feedback",
+            testiTitle: "Das sagen unsere Leser",
+            testiNote: "— ersetze diesen Abschnitt vor der Veröffentlichung durch echte Kundenbewertungen —",
+            testimonials: [
+                { quote: "Füge hier das Zitat eines ersten Kunden ein.", author: "Dein Kunde" },
+                { quote: "Füge hier eine zweite konkrete Bewertung ein.", author: "Dein Kunde" },
+                { quote: "Füge hier ein messbares Ergebnis ein, wenn möglich.", author: "Dein Kunde" }
+            ],
+
+            faqEyebrow: "Fragen",
+            faqTitle: "Bevor du startest",
+            faq: [
+                { q: "Wie erhalte ich mein E-Book?", a: "Sobald die Zahlung bestätigt ist, wird automatisch ein Download-Link per E-Mail gesendet, als PDF und DOCX. Kein Konto erforderlich." },
+                { q: "Ist die Zahlung sicher?", a: "Ja, alle Zahlungen laufen über Stripe, dieselbe Infrastruktur, die Millionen Unternehmen nutzen. Deine Bankdaten laufen niemals über diese Seite." },
+                { q: "Kann ich eine Rückerstattung bekommen?", a: "Du hast 14 Tage nach dem Kauf Zeit, eine vollständige Rückerstattung zu verlangen, falls der Inhalt nicht passt — ohne Begründung." },
+                { q: "Eignen sich die Leitfäden für Anfänger?", a: "Ja. Jeder Leitfaden ist so gestaltet, dass er sofort angewendet werden kann, keine Vorerfahrung nötig." }
+            ],
+
+            footerGuarantee: "14 Tage Bedenkzeit · Volle Rückerstattung",
             footerQuestion: "Fragen? Schreib mir auf",
             footerCopyright: "© 2026 Hit-E-Book. Alle Rechte vorbehalten."
         }
@@ -768,6 +1215,8 @@
                         <span class="price-note">${t.once}</span>
                     </div>
 
+                    <div class="product-guarantee">${t.guarantee}</div>
+
                     <a href="${product.link}" class="product-cta">
                         <span>${t.buy}</span><span class="arrow">${t.arrow}</span>
                     </a>
@@ -777,6 +1226,65 @@
 
             grid.appendChild(card);
         });
+    }
+
+
+    /* =========================
+       COMMENT ÇA MARCHE
+    ========================= */
+
+    function renderSteps() {
+        const t = translations[currentLanguage];
+        const grid = document.getElementById("stepsGrid");
+        grid.innerHTML = t.steps.map((step, i) => `
+            <div class="step">
+                <div class="step-num">0${i + 1}</div>
+                <div class="step-title">${step.title}</div>
+                <div class="step-desc">${step.desc}</div>
+            </div>
+        `).join("");
+    }
+
+
+    /* =========================
+       TÉMOIGNAGES
+    ========================= */
+
+    function renderTestimonials() {
+        const t = translations[currentLanguage];
+        const grid = document.getElementById("testimonialsGrid");
+        grid.innerHTML = t.testimonials.map(item => `
+            <div class="testimonial">
+                <div class="testimonial-stars">★★★★★</div>
+                <div class="testimonial-quote">"${item.quote}"</div>
+                <div class="testimonial-author">${item.author}</div>
+            </div>
+        `).join("");
+        document.getElementById("testiNote").textContent = t.testiNote;
+    }
+
+
+    /* =========================
+       FAQ
+    ========================= */
+
+    function renderFaq() {
+        const t = translations[currentLanguage];
+        const list = document.getElementById("faqList");
+        list.innerHTML = t.faq.map((item, i) => `
+            <div class="faq-item" id="faqItem${i}">
+                <button class="faq-question" onclick="toggleFaq(${i})">
+                    <span>${item.q}</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer"><p>${item.a}</p></div>
+            </div>
+        `).join("");
+    }
+
+    function toggleFaq(i) {
+        const item = document.getElementById("faqItem" + i);
+        item.classList.toggle("open");
     }
 
 
@@ -793,12 +1301,26 @@
 
         document.getElementById("eyebrowLabel").textContent = t.eyebrowLabel;
         document.getElementById("headerDescription").textContent = t.headerDescription;
+        document.getElementById("headerCta").querySelector("span").textContent = t.headerCta;
+        document.getElementById("topbarCta").textContent = t.topbarCta;
+        document.getElementById("trust1").textContent = t.trust1;
+        document.getElementById("trust2").textContent = t.trust2;
+        document.getElementById("trust3").textContent = t.trust3;
         document.getElementById("heroTitle").textContent = t.heroTitle;
         document.getElementById("heroDescription").textContent = t.heroDescription;
         document.getElementById("filterAll").textContent = t.all;
         document.getElementById("filterPrompts").textContent = t.prompts;
         document.getElementById("filterCreation").textContent = t.creation;
         document.getElementById("filterCopywriting").textContent = t.copywriting;
+
+        document.getElementById("howEyebrow").textContent = t.howEyebrow;
+        document.getElementById("howTitle").textContent = t.howTitle;
+        document.getElementById("testiEyebrow").textContent = t.testiEyebrow;
+        document.getElementById("testiTitle").textContent = t.testiTitle;
+        document.getElementById("faqEyebrow").textContent = t.faqEyebrow;
+        document.getElementById("faqTitle").textContent = t.faqTitle;
+
+        document.getElementById("footerGuarantee").textContent = t.footerGuarantee;
         document.getElementById("footerQuestion").textContent = t.footerQuestion;
         document.getElementById("footerCopyright").textContent = t.footerCopyright;
 
@@ -808,6 +1330,9 @@
         btn.classList.add("active");
 
         renderProducts(currentFilter);
+        renderSteps();
+        renderTestimonials();
+        renderFaq();
     }
 
 
@@ -834,6 +1359,9 @@
     ========================= */
 
     renderProducts();
+    renderSteps();
+    renderTestimonials();
+    renderFaq();
 
 </script>
 </body>
