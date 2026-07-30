@@ -391,7 +391,7 @@
 
                     <div class="product-guarantee">${t.guarantee}</div>
 
-                    <a href="${product.link}" class="product-cta">
+                    <a href="${product.link}" class="product-cta" target=_blank>
                         <span>${t.buy}</span><span class="arrow">${t.arrow}</span>
                     </a>
 
