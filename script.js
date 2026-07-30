@@ -238,8 +238,8 @@
             edition: "N° 01",
             category: "prompts",
             image: "cover-ebook1.png",
-            price: 14.99,
-            link: "https://buy.stripe.com/14AbJ0aCegHa2DS90X87K03",
+            price: 4.99,
+            link: "https://buy.stripe.com/00waEW6lY1Mg4M03GD87K04",
 
             fr: {
                 title: "50 Prompts IA",
@@ -268,8 +268,8 @@
             edition: "N° 02",
             category: "copywriting",
             image: "cover-ebook3.png",
-            price: 24.99,
-            link: "https://buy.stripe.com/6oU9AS7q2fD6fqE3GD87K01",
+            price: 11.99,
+            link: "https://buy.stripe.com/3cIbJ09ya3Uobao6SP87K05",
 
             fr: {
                 title: "Copywriting qui vend",
@@ -298,8 +298,8 @@
             edition: "N° 03",
             category: "creation",
             image: "cover-ebook2.png",
-            price: 34.99,
-            link: "https://buy.stripe.com/4gMaEW6lY62wa6k1yv87K02",
+            price: 19.99,
+            link: "https://buy.stripe.com/4gMfZgcKmgHa0vK1yv87K06",
 
             fr: {
                 title: "Créer un ebook en 7 jours",
