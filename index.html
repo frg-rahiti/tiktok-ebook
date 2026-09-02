@@ -1,138 +1,123 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-W73RFDKC');</script>
-<!-- End Google Tag Manager -->
-  
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SKBJFGDDE6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-SKBJFGDDE6');
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Des guides numériques exigeants sur les prompts IA, le copywriting et la création de business en ligne. Paiement sécurisé, accès immédiat.">
-<link rel="icon" type="image/x-icon" href="hitebook.ico">
-<title>Hit-E-Book — Collection</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,450&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W73RFDKC');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hit-E-Book — des ebooks pratiques sur l'IA, le copywriting et la création de produits numériques. Guides concrets, paiement sécurisé et accès après achat.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="Hit-E-Book — Des guides qui passent à l'action">
+  <meta property="og:description" content="Ebooks pratiques sur l'IA, le copywriting et la création de produits numériques.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://hitebook.vercel.app/">
+  <link rel="icon" type="image/x-icon" href="hitebook.ico">
+  <title>Hit-E-Book — Guides pratiques pour passer à l'action</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,650&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W73RFDKC"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W73RFDKC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- TOP BAR -->
-<div class="topbar">
-    <div class="container">
-        <div class="brand-mark">Hit<strong>-E-Book</strong> · Atelier Numérique</div>
-        <div class="topbar-right">
-            <a href="#collection" class="topbar-cta" id="topbarCta">Voir la collection</a>
-            <div class="language-selector">
-                <button class="language-btn active" onclick="changeLanguage('fr', this)">FR</button>
-                <button class="language-btn" onclick="changeLanguage('pt', this)">PT</button>
-                <button class="language-btn" onclick="changeLanguage('en', this)">EN</button>
-                <button class="language-btn" onclick="changeLanguage('de', this)">DE</button>
-            </div>
+  <nav class="topbar" aria-label="Navigation principale">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Hit-E-Book">Hit<span>-E-Book</span></a>
+      <div class="nav-actions">
+        <a href="#collection" class="nav-link" id="topbarCta">Collection</a>
+        <div class="language-selector" aria-label="Langue">
+          <button class="language-btn active" data-lang="fr">FR</button>
+          <button class="language-btn" data-lang="en">EN</button>
+          <button class="language-btn" data-lang="pt">PT</button>
+          <button class="language-btn" data-lang="de">DE</button>
         </div>
+      </div>
     </div>
-</div>
+  </nav>
 
-<!-- HEADER -->
-<header>
-    <div class="container">
+  <main id="top">
+    <header class="hero-header">
+      <div class="hero-glow"></div>
+      <div class="container hero-content">
         <div class="eyebrow" id="eyebrowLabel">Collection 2026</div>
-        <h1>Hit<span class="gradient-text">-E-Book</span></h1>
-        <p id="headerDescription">Des guides exigeants, pensés pour ceux qui refusent l'approximation.</p>
-        <a href="#collection" class="header-cta" id="headerCta"><span>Découvrir la collection</span><span>→</span></a>
-        <div class="trust-bar">
-            <span id="trust1">Paiement 100% sécurisé</span>
-            <span id="trust2">Accès immédiat après achat</span>
-            <span id="trust3">Garantie 14 jours satisfait ou remboursé</span>
+        <h1 id="headerTitle">Des guides pour <span>faire.</span></h1>
+        <p id="headerDescription">Des ebooks courts, concrets et directement exploitables pour utiliser l'IA, mieux vendre et créer un produit numérique.</p>
+        <div class="hero-actions">
+          <a href="#collection" class="btn btn-primary" id="headerCta">Voir les ebooks <span>↓</span></a>
+          <a href="#why" class="btn btn-ghost" id="heroSecondary">Pourquoi Hit-E-Book ?</a>
         </div>
-    </div>
-</header>
-
-<!-- HERO + FILTERS -->
-<div class="hero" id="collection">
-    <div class="container">
-        <h2 id="heroTitle">La Collection</h2>
-        <p id="heroDescription">Chaque guide est une pièce à part entière — choisissez la vôtre.</p>
-
-        <div class="filters">
-            <button class="filter-btn active" onclick="filterProducts('all', this)" id="filterAll">Tout voir</button>
-            <button class="filter-btn" onclick="filterProducts('prompts', this)" id="filterPrompts">Prompts &amp; IA</button>
-            <button class="filter-btn" onclick="filterProducts('creation', this)" id="filterCreation">Création &amp; Business</button>
-            <button class="filter-btn" onclick="filterProducts('copywriting', this)" id="filterCopywriting">Copywriting</button>
+        <div class="trust-bar" aria-label="Garanties">
+          <span id="trust1">Paiement sécurisé par Stripe</span>
+          <span id="trust2">Produit numérique</span>
+          <span id="trust3">Garantie 14 jours*</span>
         </div>
-    </div>
-</div>
+      </div>
+    </header>
 
-<!-- PRODUCTS GRID -->
-<div class="container">
-    <div class="products-grid" id="productsGrid"></div>
-</div>
+    <section class="problem-strip">
+      <div class="container problem-grid">
+        <div><span class="micro">01</span><strong id="problem1Title">Moins de théorie</strong><p id="problem1Desc">Des méthodes pensées pour être appliquées immédiatement.</p></div>
+        <div><span class="micro">02</span><strong id="problem2Title">Plus d'action</strong><p id="problem2Desc">Prompts, frameworks et plans d'action prêts à utiliser.</p></div>
+        <div><span class="micro">03</span><strong id="problem3Title">Un résultat clair</strong><p id="problem3Desc">Chaque guide répond à un objectif précis.</p></div>
+      </div>
+    </section>
 
-<!-- HOW IT WORKS -->
-<section class="section">
-    <div class="container">
-        <div class="section-head">
-            <span class="section-eyebrow" id="howEyebrow">Simple &amp; direct</span>
-            <h2 class="section-title" id="howTitle">Comment ça marche</h2>
+    <section class="collection section" id="collection">
+      <div class="container">
+        <div class="section-head split-head">
+          <div><span class="section-eyebrow" id="collectionEyebrow">Les guides</span><h2 id="heroTitle">Choisis ton prochain résultat.</h2></div>
+          <p id="heroDescription">Pas besoin d'une bibliothèque de 50 livres. Commence par celui qui règle ton problème actuel.</p>
         </div>
+        <div class="filters" role="tablist" aria-label="Filtres produits">
+          <button class="filter-btn active" data-filter="all" id="filterAll">Tout</button>
+          <button class="filter-btn" data-filter="prompts" id="filterPrompts">IA & Prompts</button>
+          <button class="filter-btn" data-filter="copywriting" id="filterCopywriting">Copywriting</button>
+          <button class="filter-btn" data-filter="creation" id="filterCreation">Création</button>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+      </div>
+    </section>
+
+    <section class="bundle section" id="bundle">
+      <div class="container bundle-card">
+        <div><span class="section-eyebrow" id="bundleEyebrow">Meilleure valeur</span><h2 id="bundleTitle">Le Pack Hit-E-Book</h2><p id="bundleDescription">Les 3 guides pour avancer sur l'IA, le copywriting et la création d'ebook — à prix réduit.</p></div>
+        <div class="bundle-offer"><div><span class="old-price">32,97 €</span><strong>24,99 €</strong></div><a class="btn btn-primary" id="bundleCta" href="https://buy.stripe.com/7sY00iaxm78q3gdetBeAg03" target="_blank" rel="noopener">Prendre le pack <span>→</span></a></div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="container">
+        <div class="section-head centered"><span class="section-eyebrow" id="whyEyebrow">Notre approche</span><h2 id="whyTitle">Pas de blabla. Des outils.</h2><p id="whyIntro">Le but n'est pas de te faire lire davantage. Le but est de te faire avancer.</p></div>
+        <div class="why-grid" id="whyGrid"></div>
+      </div>
+    </section>
+
+    <section class="section steps-section">
+      <div class="container">
+        <div class="section-head centered"><span class="section-eyebrow" id="howEyebrow">Simple</span><h2 id="howTitle">De l'idée au fichier.</h2></div>
         <div class="steps" id="stepsGrid"></div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- TESTIMONIALS -->
-<section class="section">
-    <div class="container">
-        <div class="section-head">
-            <span class="section-eyebrow" id="testiEyebrow">Retours</span>
-            <h2 class="section-title" id="testiTitle">Ce qu'en disent les lecteurs</h2>
-        </div>
-        <div class="testimonials" id="testimonialsGrid"></div>
-    </div>
-</section>
-
-<!-- FAQ -->
-<section class="section" style="border-bottom:none;">
-    <div class="container">
-        <div class="section-head">
-            <span class="section-eyebrow" id="faqEyebrow">Questions</span>
-            <h2 class="section-title" id="faqTitle">Avant de vous lancer</h2>
-        </div>
+    <section class="section faq-section">
+      <div class="container faq-layout">
+        <div class="section-head"><span class="section-eyebrow" id="faqEyebrow">Questions</span><h2 id="faqTitle">Avant d'acheter.</h2><p id="faqIntro">Les réponses aux questions qui comptent vraiment.</p></div>
         <div class="faq" id="faqList"></div>
-    </div>
-</section>
+      </div>
+    </section>
+  </main>
 
-<!-- FOOTER -->
-<footer>
-    <div class="container">
-        <p class="footer-guarantee" id="footerGuarantee">14 jours pour changer d'avis · Remboursement intégral</p>
-        <p id="footerQuestion">Une question ? Écrivez-moi sur</p>
-        <div class="social-links">
-            <a href="https://www.tiktok.com/@hitebook" target="_blank">TikTok</a>
-            <a href="https://www.instagram.com/hit_e_book/" target="_blank">Instagram</a>
-        </div>
-        <p id="footerCopyright">© 2026 Hit-E-Book. Tous droits réservés.</p>
+  <footer>
+    <div class="container footer-grid">
+      <div><a class="brand" href="#top">Hit<span>-E-Book</span></a><p id="footerTagline">Des guides numériques conçus pour passer à l'action.</p></div>
+      <div><strong id="footerLinksTitle">Informations</strong><div class="footer-links"><a href="mentions-legales.html">Mentions légales</a><a href="cgv.html">CGV</a><a href="confidentialite.html">Confidentialité</a></div></div>
+      <div><strong id="footerSocialTitle">Réseaux</strong><div class="footer-links"><a href="https://www.tiktok.com/@hitebook" target="_blank" rel="noopener">TikTok</a><a href="https://www.instagram.com/hit_e_book/" target="_blank" rel="noopener">Instagram</a></div></div>
     </div>
-</footer>
+    <div class="container footer-bottom"><span id="footerCopyright">© 2026 Hit-E-Book. Tous droits réservés.</span><span id="footerGuarantee">* Garantie selon les conditions applicables aux produits numériques.</span></div>
+  </footer>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
